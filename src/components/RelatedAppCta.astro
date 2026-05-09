@@ -1,0 +1,22 @@
+---
+import type { AppItem } from "../data/apps";
+
+type Props = {
+  app?: AppItem;
+};
+
+const { app } = Astro.props;
+---
+
+{
+  app && (
+    <aside class="card related-app-cta">
+      <p class="label">Related App</p>
+      <h3>{app.name}</h3>
+      <p>{app.description}</p>
+      <a class="button" href={app.appStoreUrl} target="_blank" rel="noopener noreferrer">
+        App Storeで確認する
+      </a>
+    </aside>
+  )
+}

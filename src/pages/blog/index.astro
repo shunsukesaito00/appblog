@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import BlogCard from "../../components/BlogCard.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+---
+
+<BaseLayout
+  title="ブログ一覧 | 個人開発ラボ"
+  description="個人開発、副業収益化、ASO、App Store改善、Cursor/Codex活用の実践記事一覧です。"
+  canonical="/blog"
+  ogType="article"
+>
+  <div class="page-blog">
+    <header class="blog-list-intro card">
+      <p class="blog-list-eyebrow">Journal</p>
+      <h1 class="blog-list-title">ブログ</h1>
+      <p class="blog-list-lead">
+        個人開発・副業収益化・App Store改善の試行錯誤を、時系列で読めるようにしています。
+      </p>
+    </header>
+
+    <SectionHeader title="すべての記事" description="新しい順" />
+    <div class="card-grid cols-2 blog-list-grid">
+      {posts.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          href={`/blog/${post.id}`}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

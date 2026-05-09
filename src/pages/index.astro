@@ -1,11 +1,176 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import AppCard from "../components/AppCard.astro";
+import BlogCard from "../components/BlogCard.astro";
+import CategoryBadge from "../components/CategoryBadge.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import RoadmapStep from "../components/RoadmapStep.astro";
+import { apps } from "../data/apps";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+const latestPosts = allPosts.slice(0, 3);
+const popularPosts = allPosts.slice(0, 2);
+const featuredApps = apps.slice(0, 3);
+const categories = [
+  "個人開発",
+  "ASO",
+  "App Store",
+  "Cursor",
+  "Codex",
+  "AdMob",
+  "副業収益化",
+  "iOSアプリ開発",
+];
+
+const featureAreas = [
+  {
+    title: "個人開発の戦略と実行",
+    description: "会社員でも継続できるテーマ選定、開発サイクル、改善手順をまとめています。",
+    href: "/blog",
+    linkLabel: "記事一覧を見る",
+  },
+  {
+    title: "ASOとApp Store改善",
+    description: "検索キーワード、スクリーンショット、CVR改善の実践ログを記録しています。",
+    href: "/categories",
+    linkLabel: "カテゴリから探す",
+  },
+  {
+    title: "副業収益化の検証",
+    description: "収益化モデル、広告運用、継続率改善の検証をアプリ実績と合わせて公開します。",
+    href: "/apps",
+    linkLabel: "アプリを見る",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="個人開発ラボ | 個人開発・副業収益化・iOSアプリ改善の実践ブログ"
+  description="個人開発で副業収益化を目指す会社員エンジニアが、iOSアプリ開発、ASO、App Store改善、Cursor/Codex活用を実践記録するブログです。"
+  canonical="/"
+>
+  <section class="card hero">
+    <p class="eyebrow">個人開発 × 副業収益化</p>
+    <h1>個人開発で、月5万円を積み上げる実践ポートフォリオ。</h1>
+    <p>
+      会社員エンジニアが iOSアプリを作り、App Store最適化で改善し、収益化まで回し続けるプロセスを公開しています。
+    </p>
+    <div class="cta-row">
+      <a class="button" href="/apps">アプリを見る</a>
+      <a class="button subtle" href="/blog">記事を読む</a>
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="このサイトで読めること" description="収益化までを一気通貫で追える構成です" />
+    <div class="card-grid cols-3">
+      {
+        featureAreas.map((area) => (
+          <FeatureCard
+            title={area.title}
+            description={area.description}
+            href={area.href}
+            linkLabel={area.linkLabel}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="収益化ロードマップ" description="作る、出す、改善する、収益化する" />
+    <div class="card-grid cols-4">
+      <RoadmapStep
+        step="Step 1"
+        title="課題を選んで作る"
+        description="検索される課題を狙って、最小機能のiOSアプリを素早く公開します。"
+      />
+      <RoadmapStep
+        step="Step 2"
+        title="App Storeに出す"
+        description="タイトル、説明文、スクリーンショットを整えて初速を作ります。"
+      />
+      <RoadmapStep
+        step="Step 3"
+        title="ASOで改善する"
+        description="流入とCVRを追いながら、訴求と導線を継続的に改善します。"
+      />
+      <RoadmapStep
+        step="Step 4"
+        title="収益化を積み上げる"
+        description="広告や有料機能を検証し、継続率と収益性を高めます。"
+      />
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="Featured Apps" description="公開中の個人開発アプリ" />
+    <div class="card-grid cols-3">
+      {featuredApps.map((app) => <AppCard app={app} />)}
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="Popular Posts" description="まず読むべき基礎記事" />
+    <div class="card-grid cols-2">
+      {popularPosts.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          href={`/blog/${post.id}`}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="Latest Posts" description="最新の改善ログ" />
+    <div class="card-grid cols-3">
+      {latestPosts.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          href={`/blog/${post.id}`}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="Categories" description="検索意図に合わせて探す" />
+    <div class="card">
+      <div class="cta-row">
+        {categories.map((category) => <CategoryBadge label={category} />)}
+      </div>
+      <div class="cta-row">
+        <a class="button subtle" href="/blog">記事一覧へ</a>
+        <a class="button subtle" href="/categories">カテゴリ一覧へ</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="About Summary" description="運営者と発信方針" />
+    <div class="card">
+      <p>
+        個人開発ラボは、会社員エンジニアが副業でiOSアプリを改善しながら、
+        ASO・収益化・開発効率化の試行錯誤を記録するブログです。
+      </p>
+      <div class="cta-row">
+        <a class="button subtle" href="/apps">アプリ一覧を見る</a>
+        <a class="button subtle" href="/blog">最新記事を読む</a>
+        <a class="button subtle" href="/about">運営者について</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

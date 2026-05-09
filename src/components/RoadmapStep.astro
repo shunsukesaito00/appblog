@@ -1,0 +1,15 @@
+---
+type Props = {
+  step: string;
+  title: string;
+  description: string;
+};
+
+const { step, title, description } = Astro.props;
+---
+
+<article class="card roadmap-step">
+  <p class="step-label">{step}</p>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</article>

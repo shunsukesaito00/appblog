@@ -1,0 +1,32 @@
+---
+import type { AppItem } from "../data/apps";
+import CategoryBadge from "./CategoryBadge.astro";
+
+type Props = {
+  app: AppItem;
+};
+
+const { app } = Astro.props;
+---
+
+<article class="card app-card">
+  <div class="app-icon-wrap">
+    <img
+      src={app.icon}
+      alt={`${app.name} のアイコン`}
+      loading="lazy"
+      onerror="this.style.display='none';"
+    />
+  </div>
+  <div class="app-card-body">
+    <p class="app-caption">検証中プロダクト</p>
+    <h3>{app.name}</h3>
+    <p>{app.description}</p>
+    <div class="app-meta">
+      <CategoryBadge label={app.category} />
+      <a class="button" href={app.appStoreUrl} target="_blank" rel="noopener noreferrer">
+        App Storeページへ
+      </a>
+    </div>
+  </div>
+</article>

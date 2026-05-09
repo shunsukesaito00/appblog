@@ -1,0 +1,29 @@
+---
+import CategoryBadge from "./CategoryBadge.astro";
+
+type Props = {
+  title: string;
+  description: string;
+  pubDate: Date;
+  category: string;
+  tags: string[];
+  href: string;
+};
+
+const { title, description, pubDate, category, tags, href } = Astro.props;
+---
+
+<article class="card blog-card">
+  <p class="date">{pubDate.toLocaleDateString("ja-JP")}</p>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+  <div class="blog-meta">
+    <div class="blog-meta-top">
+      <CategoryBadge label={category} />
+      <a class="text-link" href={href}>続きを読む</a>
+    </div>
+    <ul>
+      {tags.map((tag) => <li>#{tag}</li>)}
+    </ul>
+  </div>
+</article>

@@ -1,0 +1,24 @@
+---
+type Props = {
+  siteName: string;
+  siteSubtitle: string;
+};
+
+const { siteName, siteSubtitle } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <span class="brand-title">{siteName}</span>
+      <span class="brand-subtitle">{siteSubtitle}</span>
+    </a>
+    <nav class="nav-links" aria-label="メインナビゲーション">
+      <a href="/apps">Apps</a>
+      <a href="/blog">Blog</a>
+      <a href="/categories">Categories</a>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import AppCard from "../components/AppCard.astro";
+import { apps } from "../data/apps";
+---
+
+<BaseLayout
+  title="アプリ一覧 | 個人開発ラボ"
+  description="個人開発ラボで公開している自作iOSアプリの一覧です。"
+  canonical="/apps"
+>
+  <SectionHeader title="Apps" description="公開中の自作アプリ一覧" />
+  <div class="card-grid cols-2">
+    {apps.map((app) => <AppCard app={app} />)}
+  </div>
+</BaseLayout>

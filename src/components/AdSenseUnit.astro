@@ -1,0 +1,37 @@
+---
+/**
+ * 環境変数がセットされているときだけレンダーします。
+ * - PUBLIC_ADSENSE_CLIENT（例: ca-pub-xxxxxxxxxxxxxxxx）
+ * - PUBLIC_ADSENSE_SLOT_ARTICLE（広告ユニットの data-ad-slot）
+ *
+ * ads.txt は Search Console / AdSense の案内に従い public/ads.txt に配置してください。
+ */
+type Props = {
+  adSlot?: string;
+};
+
+const { adSlot } = Astro.props;
+const client = import.meta.env.PUBLIC_ADSENSE_CLIENT?.trim();
+const slot =
+  adSlot?.trim() ?? import.meta.env.PUBLIC_ADSENSE_SLOT_ARTICLE?.trim();
+const show = Boolean(client && slot);
+---
+
+{
+  show && (
+    <aside class="ad-slot card" aria-label="広告">
+      <p class="ad-slot-label">Advertisement</p>
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={client}
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+      <script is:inline>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+  )
+}
