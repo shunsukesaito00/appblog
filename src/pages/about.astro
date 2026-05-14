@@ -7,10 +7,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   description="個人開発ラボの運営者プロフィールです。"
   canonical="/about"
 >
-  <article class="card">
-    <h1>運営者について</h1>
-    <p>製造業で働く会社員エンジニアです。</p>
-    <p>本業の傍ら、iOSアプリ開発・ASO改善・副業収益化を実践しています。</p>
-    <p>このサイトでは、個人開発で得た知見、失敗、改善ログを記録しています。</p>
+  <article class="card article-shell">
+    <header class="article-header">
+      <p class="article-eyebrow">About</p>
+      <h1>運営者について</h1>
+      <p class="article-lead">
+        製造業で働く会社員エンジニアです。静かなオフィスと、家のデスクのあいだを行き来しながらコードを書いています。
+      </p>
+    </header>
+
+    <div class="article-content prose">
+      <p>
+        個人開発を始めたきっかけはシンプルで、「本業だけだと技術の幅が狭まる感覚」がつらかったからです。週末に小さなアプリを出してみて、レビューが付いた瞬間の高揚と、バグ報告で凹む夜——どちらも含めて、今はかなり楽しい時間になっています。
+      </p>
+      <p>
+        ASO や収益化は教科書通りにはいかず、数字を見ては言い訳を考え、また直す、の繰り返しです。Cursor や Codex はその試行回数を増やす相棒として重宝していますが、最後に責任を取るのは自分だと割り切っています。
+      </p>
+      <p>
+        このサイトでは、うまくいったことも、空振りしたことも、できるだけ飾らずに残します。同じように副業アプリに挑戦している方の背中をそっと押せたらうれしいです。気軽に記事を読んでいってください。
+      </p>
+    </div>
+
+    <div class="cta-row about-page-actions">
+      <a class="button" href="/blog">記事一覧へ</a>
+      <a class="button subtle" href="/">トップへ</a>
+    </div>
   </article>
 </BaseLayout>

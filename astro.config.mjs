@@ -5,7 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://kojin-dev-lab.pages.dev',
+  // Cloudflare Pages の本番 URL（canonical / sitemap / OGP の基準）
+  site: 'https://appblog-a4k.pages.dev',
   output: 'static',
   integrations: [mdx(), sitemap()],
 });

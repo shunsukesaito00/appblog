@@ -8,13 +8,23 @@ type Props = {
   category: string;
   tags: string[];
   href: string;
+  readingMinutes?: number;
 };
 
-const { title, description, pubDate, category, tags, href } = Astro.props;
+const { title, description, pubDate, category, tags, href, readingMinutes } = Astro.props;
 ---
 
 <article class="card blog-card">
-  <p class="date">{pubDate.toLocaleDateString("ja-JP")}</p>
+  <div class="blog-card-topline">
+    <p class="date">{pubDate.toLocaleDateString("ja-JP")}</p>
+    {
+      readingMinutes != null && (
+        <p class="reading-time" aria-label={`読了の目安 約${readingMinutes}分`}>
+          約{readingMinutes}分
+        </p>
+      )
+    }
+  </div>
   <h3><a href={href}>{title}</a></h3>
   <p>{description}</p>
   <div class="blog-meta">

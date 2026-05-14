@@ -3,15 +3,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import AppCard from "../components/AppCard.astro";
 import { apps } from "../data/apps";
+
+const appsWithIntro = apps.filter((app) => app.introSlug);
 ---
 
 <BaseLayout
   title="アプリ一覧 | 個人開発ラボ"
-  description="個人開発ラボで公開している自作iOSアプリの一覧です。"
+  description="個人開発ラボで公開している自作iOSアプリの一覧です。各アプリの紹介記事と App Store への導線をまとめています。"
   canonical="/apps"
 >
-  <SectionHeader title="Apps" description="公開中の自作アプリ一覧" />
+  <SectionHeader
+    title="Apps"
+    description="紹介記事で機能と実績を読んだうえで、App Store から入手できます"
+  />
   <div class="card-grid cols-2">
     {apps.map((app) => <AppCard app={app} />)}
   </div>
+
+  <section>
+    <SectionHeader title="アプリ紹介記事一覧" description="内部リンク用のハブ（クロールしやすい一覧）" />
+    <nav class="card app-intro-nav" aria-label="アプリ紹介記事へのリンク">
+      <ul>
+        {
+          appsWithIntro.map((app) => (
+            <li>
+              <a href={`/blog/${app.introSlug}`}>{app.name}の紹介と実績</a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="cta-row">
+        <a class="button subtle" href="/blog">ブログ一覧へ</a>
+      </div>
+    </nav>
+  </section>
 </BaseLayout>

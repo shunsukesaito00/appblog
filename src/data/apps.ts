@@ -4,6 +4,8 @@ export type AppItem = {
   category: string;
   icon: string;
   appStoreUrl: string;
+  /** Content collection entry `id` for the app intro post */
+  introSlug?: string;
 };
 
 export const apps: AppItem[] = [
@@ -14,6 +16,7 @@ export const apps: AppItem[] = [
     icon: "/images/apps/loan-payoff.jpg",
     appStoreUrl:
       "https://apps.apple.com/us/app/%E5%80%9F%E5%85%A5%E8%BF%94%E6%B8%88%E7%AE%A1%E7%90%86/id6765820158",
+    introSlug: "app-intro-loan-payoff",
   },
   {
     name: "給与明細管理",
@@ -21,6 +24,7 @@ export const apps: AppItem[] = [
     category: "Productivity",
     icon: "/images/apps/salary-tracker.jpg",
     appStoreUrl: "https://apps.apple.com/app/id6759832140",
+    introSlug: "app-intro-salary",
   },
   {
     name: "らくらく筋トレ記録",
@@ -28,6 +32,7 @@ export const apps: AppItem[] = [
     category: "Health & Fitness",
     icon: "/images/apps/workout-log.jpg",
     appStoreUrl: "https://apps.apple.com/app/id6761645473",
+    introSlug: "app-intro-workout",
   },
   {
     name: "16タイプ性格診断",
@@ -35,6 +40,7 @@ export const apps: AppItem[] = [
     category: "Lifestyle",
     icon: "/images/apps/personality16.jpg",
     appStoreUrl: "https://apps.apple.com/app/id6745159807",
+    introSlug: "app-intro-personality",
   },
   {
     name: "コンビニ断ち",

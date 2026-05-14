@@ -8,13 +8,19 @@ import CategoryBadge from "../components/CategoryBadge.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 import RoadmapStep from "../components/RoadmapStep.astro";
 import { apps } from "../data/apps";
+import { estimateReadingMinutesFromBody } from "../utils/readingTime";
 
 const allPosts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
-const latestPosts = allPosts.slice(0, 3);
-const popularPosts = allPosts.slice(0, 2);
+const introSlugs = new Set(
+  apps.map((a) => a.introSlug).filter((slug): slug is string => Boolean(slug)),
+);
+const appIntroPosts = allPosts
+  .filter((post) => introSlugs.has(post.id))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const featuredApps = apps.slice(0, 3);
+const popularPosts = allPosts.slice(0, 3);
 const categories = [
   "個人開発",
   "ASO",
@@ -55,13 +61,36 @@ const featureAreas = [
 >
   <section class="card hero">
     <p class="eyebrow">個人開発 × 副業収益化</p>
-    <h1>個人開発で、月5万円を積み上げる実践ポートフォリオ。</h1>
+    <p class="hero-kicker">個人開発で月5万円を積み上げる</p>
+    <h1>会社員エンジニアが iOS で試す、実践ポートフォリオ。</h1>
     <p>
       会社員エンジニアが iOSアプリを作り、App Store最適化で改善し、収益化まで回し続けるプロセスを公開しています。
     </p>
     <div class="cta-row">
       <a class="button" href="/apps">アプリを見る</a>
       <a class="button subtle" href="/blog">記事を読む</a>
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader
+      title="人気の記事"
+      description="新着からピックアップした3本。まずはここからどうぞ"
+    />
+    <div class="card-grid cols-3">
+      {
+        popularPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            href={`/blog/${post.id}`}
+            readingMinutes={estimateReadingMinutesFromBody(post.body)}
+          />
+        ))
+      }
     </div>
   </section>
 
@@ -115,9 +144,12 @@ const featureAreas = [
   </section>
 
   <section>
-    <SectionHeader title="Popular Posts" description="まず読むべき基礎記事" />
+    <SectionHeader
+      title="アプリ紹介記事"
+      description="機能・実績・App Store 導線をまとめたハブです"
+    />
     <div class="card-grid cols-2">
-      {popularPosts.map((post) => (
+      {appIntroPosts.map((post) => (
         <BlogCard
           title={post.data.title}
           description={post.data.description}
@@ -125,32 +157,23 @@ const featureAreas = [
           category={post.data.category}
           tags={post.data.tags}
           href={`/blog/${post.id}`}
+          readingMinutes={estimateReadingMinutesFromBody(post.body)}
         />
       ))}
     </div>
-  </section>
-
-  <section>
-    <SectionHeader title="Latest Posts" description="最新の改善ログ" />
-    <div class="card-grid cols-3">
-      {latestPosts.map((post) => (
-        <BlogCard
-          title={post.data.title}
-          description={post.data.description}
-          pubDate={post.data.pubDate}
-          category={post.data.category}
-          tags={post.data.tags}
-          href={`/blog/${post.id}`}
-        />
-      ))}
+    <div class="cta-row">
+      <a class="button subtle" href="/apps">アプリ一覧と紹介リンク</a>
+      <a class="button subtle" href="/blog">ブログ一覧へ</a>
     </div>
   </section>
 
   <section>
     <SectionHeader title="Categories" description="検索意図に合わせて探す" />
     <div class="card">
-      <div class="cta-row">
-        {categories.map((category) => <CategoryBadge label={category} />)}
+      <div class="category-scroll-row" aria-label="カテゴリ一覧">
+        {categories.map((category) => (
+          <CategoryBadge label={category} />
+        ))}
       </div>
       <div class="cta-row">
         <a class="button subtle" href="/blog">記事一覧へ</a>
@@ -163,8 +186,10 @@ const featureAreas = [
     <SectionHeader title="About Summary" description="運営者と発信方針" />
     <div class="card">
       <p>
-        個人開発ラボは、会社員エンジニアが副業でiOSアプリを改善しながら、
-        ASO・収益化・開発効率化の試行錯誤を記録するブログです。
+        こんにちは。本業の合間にアプリを触って、ときどき徹夜して、翌朝は後悔しつつもまた改善したくなる——そんなサイクルを回している会社員エンジニアです。
+      </p>
+      <p>
+        個人開発ラボでは、その泥臭い試行錯誤（ASO、収益化、Cursor/Codex など）をできるだけ正直に残しています。同じ立場の方の参考になればうれしいです。
       </p>
       <div class="cta-row">
         <a class="button subtle" href="/apps">アプリ一覧を見る</a>

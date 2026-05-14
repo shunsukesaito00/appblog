@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kojin-dev-lab.pages.dev/sitemap-index.xml
+Sitemap: https://appblog-a4k.pages.dev/sitemap-index.xml
