@@ -583,6 +583,85 @@ section {
   margin-top: 32px;
 }
 
+/* 記事内テーブル：狭い画面で横スクロール */
+.article-content .article-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.1em 0;
+  max-width: 100%;
+}
+
+.article-content .article-table-scroll table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.article-content .article-table-scroll th,
+.article-content .article-table-scroll td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.65rem;
+  vertical-align: top;
+}
+
+.article-content .article-table-scroll tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* 収益レポート等：サマリー指標のモバイル用カード */
+.article-summary-cards {
+  display: none;
+}
+
+.article-metric-card {
+  background: rgba(11, 13, 16, 0.45);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+
+.article-metric-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-sub);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.article-metric-value {
+  display: block;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.article-metric-note {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .article-summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 0 1rem;
+  }
+
+  .article-metric-card:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
+  .article-summary-table-desktop {
+    display: none;
+  }
+}
+
 .article-content.prose {
   max-width: 68ch;
   margin-left: auto;
