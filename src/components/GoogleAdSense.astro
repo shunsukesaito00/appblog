@@ -1,0 +1,21 @@
+---
+/**
+ * AdSense 審査・配信用スクリプト（全ページの head に配置）
+ * - astro dev では出さない
+ * - 本番では PUBLIC_ADSENSE_CLIENT を優先。未設定時は既定の pub ID（Cloudflare Pages 向け）
+ */
+const defaultClient = "ca-pub-3293510133025826";
+const fromEnv = import.meta.env.PUBLIC_ADSENSE_CLIENT?.trim();
+const client = import.meta.env.PROD ? fromEnv || defaultClient : "";
+const enabled = import.meta.env.PROD && Boolean(client);
+---
+
+{
+  enabled && (
+    <script
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
+      crossorigin="anonymous"
+    />
+  )
+}

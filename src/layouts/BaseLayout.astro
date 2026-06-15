@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import GoogleAdSense from "../components/GoogleAdSense.astro";
 import "../styles/global.css";
 
 type Props = {
@@ -38,7 +39,6 @@ const ogImageUrl =
     ? ogImage
     : new URL(ogImage, baseUrl).toString();
 const resolvedOgImageAlt = ogImageAlt ?? ogTitle;
-const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT?.trim();
 ---
 
 <!doctype html>
@@ -66,15 +66,7 @@ const adsClient = import.meta.env.PUBLIC_ADSENSE_CLIENT?.trim();
 
     <meta name="theme-color" content="#0B0D10" />
 
-    {
-      adsClient && (
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClient}`}
-          crossorigin="anonymous"
-        />
-      )
-    }
+    <GoogleAdSense />
   </head>
   <body>
     <Header siteName={siteName} siteSubtitle={siteSubtitle} />

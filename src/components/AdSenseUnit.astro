@@ -11,7 +11,9 @@ type Props = {
 };
 
 const { adSlot } = Astro.props;
-const client = import.meta.env.PUBLIC_ADSENSE_CLIENT?.trim();
+const defaultClient = "ca-pub-3293510133025826";
+const fromEnv = import.meta.env.PUBLIC_ADSENSE_CLIENT?.trim();
+const client = import.meta.env.PROD ? fromEnv || defaultClient : "";
 const slot =
   adSlot?.trim() ?? import.meta.env.PUBLIC_ADSENSE_SLOT_ARTICLE?.trim();
 const show = Boolean(client && slot);
