@@ -3,22 +3,15 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 
-const categoryList = [
-  "個人開発",
-  "ASO",
-  "App Store",
-  "Cursor",
-  "Codex",
-  "AdMob",
-  "副業収益化",
-  "iOSアプリ開発",
-];
-
 const posts = await getCollection("blog");
-const grouped = categoryList.map((category) => ({
-  category,
-  items: posts.filter((post) => post.data.category === category),
-}));
+const grouped = [...new Set(posts.map((post) => post.data.category))]
+  .sort((a, b) => a.localeCompare(b, "ja"))
+  .map((category) => ({
+    category,
+    items: posts
+      .filter((post) => post.data.category === category)
+      .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
+  }));
 ---
 
 <BaseLayout
@@ -31,17 +24,11 @@ const grouped = categoryList.map((category) => ({
     {grouped.map((group) => (
       <section class="card">
         <h3>{group.category}</h3>
-        {
-          group.items.length > 0 ? (
-            <ul>
-              {group.items.map((item) => (
-                <li><a href={`/blog/${item.id}`}>{item.data.title}</a></li>
-              ))}
-            </ul>
-          ) : (
-            <p>このカテゴリの記事は準備中です。</p>
-          )
-        }
+        <ul>
+          {group.items.map((item) => (
+            <li><a href={`/blog/${item.id}`}>{item.data.title}</a></li>
+          ))}
+        </ul>
       </section>
     ))}
   </div>
