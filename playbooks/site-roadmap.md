@@ -29,8 +29,9 @@
 
 ## 現状スナップショット（2026年7月時点）
 
-- **済:** 収益報告複数月、アプリ紹介4本、分析1本、給与明細How-to1本、ヒーロー実態化、プライバシー更新、About連絡先（GitHub Issues）、収益報告導線
+- **済:** 収益報告複数月、アプリ紹介4本、分析1本、給与明細How-to2本（PDF取り込み／総支給と手取りの差）、ヒーロー実態化、プライバシー更新、About連絡先（GitHub Issues）、収益報告導線
 - **ボトルネック:** サイト検索流入なし、AdSense却下、収益報告偏重、DLは給与明細集中だが絶対数は小さい
+- **コンテンツ（2026-07-14）:** How-to 追加 `/blog/salary-gross-takehome-gap-howto/`（収益数字なし）。収益報告以外の厚い記事は分析＋How-to2本で **3本**（フェーズ4の目安を満たす）
 - **計測（2026-07-13）:** How-to `/blog/salary-pdf-import-takehome-howto/` は sitemap 掲載・HTTP 200。`site:appblog-a4k.pages.dev` では未登録（公開直後）。GA（G-XFJJNW1RCT）・Search Console の PV／参照元／カバレッジはダッシュボード未連携のため数値未取得—手動確認要
 - **計測（2026-07-13・SC）:** 上記 How-to URL で Search Console のインデックス登録をリクエスト済み。リクエスト直後の `site:` 検索では **未反映**（反映まで数日かかることが多い）。**次回確認推奨: 2026-07-20**（登録有無・GA初回PV）
 - **計測（2026-07-20）:** `site:appblog-a4k.pages.dev salary-pdf-import-takehome-howto` およびドメイン全体とも **未登録**。How-to は HTTP 200・sitemap 掲載継続。GA（G-XFJJNW1RCT）PVはダッシュボード未連携のため未取得—手動確認要。**次回確認推奨: 2026-07-27**
