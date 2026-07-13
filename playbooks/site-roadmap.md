@@ -34,6 +34,7 @@
 - **コンテンツ:** 収益報告以外の厚い記事は分析＋How-to2本で **3本**（フェーズ4の目安クリア）。How-to: `/blog/salary-pdf-import-takehome-howto/`・`/blog/salary-gross-takehome-gap-howto/`。**2026-07-14 本番確認:** ギャップ How-to は HTTP **200**・title 正常・sitemap 掲載
 - **計測（要約）:** How-to2本とも本番 HTTP 200・sitemap 掲載・技術的にインデックス可。**2026-07-14 再確認:** `site:…salary-pdf-import-takehome-howto` およびドメイン全体とも **未登録**（ギャップ How-to も同様）。SC で PDF How-to のインデックス登録はリクエスト済み（除外理由の画面文言は未取得）。GA（G-XFJJNW1RCT）タグは本番出力済だが Data API 認証未設定のため PV・参照元は未取得（手順: `playbooks/ga4-setup.md`）。**次回確認: 2026-08-03**（`site:`／SC）
 - **ASO（要約）:** 給与明細の説明文先頭を PDF取り込み・手取り記録に変更（正本: `apps.ts` の `appStoreDescriptionLead`、貼付: `npm run store:lead`）。**2026-07-14 verify:** 公開ストアは **旧文案のまま**（`reflected: false`）。本日はまだ待ち明け前のため **次回 verify は 2026-07-17 以降のみ**（成功日を反映日として追記）
+- **導線（2026-07-14）:** 給与明細 How-to2本への内部リンクを分析・5〜6月収益・給与明細5月単体まで整備済み。**ASO は 2026-07-17 待ち**（それまで store:verify 連打なし）
 
 ## 提案の出し方（1件のみ）
 
