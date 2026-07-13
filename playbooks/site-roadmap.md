@@ -33,7 +33,7 @@
 - **ボトルネック:** サイト検索流入なし、AdSense却下、収益報告偏重、DLは給与明細集中だが絶対数は小さい
 - **コンテンツ:** 収益報告以外の厚い記事は分析＋How-to2本で **3本**（フェーズ4の目安クリア）。How-to: `/blog/salary-pdf-import-takehome-howto/`・`/blog/salary-gross-takehome-gap-howto/`
 - **計測（要約）:** How-to2本とも本番 HTTP 200・sitemap 掲載・技術的にインデックス可。`site:` はドメイン／両 How-to とも **未登録**。SC で PDF How-to のインデックス登録はリクエスト済み（除外理由の画面文言は未取得）。GA（G-XFJJNW1RCT）タグは本番出力済だが Data API 認証未設定のため PV・参照元は未取得（手順: `playbooks/ga4-setup.md`）。**次回確認: 2026-08-03**（`site:`／SC）
-- **ASO（要約）:** 給与明細の説明文先頭を PDF取り込み・手取り記録に変更（正本: `apps.ts` の `appStoreDescriptionLead`、貼付: `npm run store:lead`）。公開ストアは **旧文案のまま**（`npm run store:verify` → 未反映）。**次回確認: 2026-07-17 以降**（成功日を反映日として追記、DL比較は反映後2週間）
+- **ASO（要約）:** 給与明細の説明文先頭を PDF取り込み・手取り記録に変更（正本: `apps.ts` の `appStoreDescriptionLead`、貼付: `npm run store:lead`）。**2026-07-14 verify:** 公開ストアは **旧文案のまま**（`reflected: false`）。**次回確認: 2026-07-17 以降**（成功日を反映日として追記、DL比較は反映後2週間）
 
 ## 提案の出し方（1件のみ）
 
