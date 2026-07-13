@@ -29,8 +29,18 @@
 
 ## 現状スナップショット（2026年7月時点）
 
-- **済:** 収益報告複数月、アプリ紹介4本、分析1本、ヒーロー実態化、プライバシー更新、収益報告導線
-- **ボトルネック:** サイト流入ほぼゼロ、AdSense却下、About連絡先なし、収益報告偏重、DLは給与明細集中だが絶対数は小さい
+- **済:** 収益報告複数月、アプリ紹介4本、分析1本、給与明細How-to1本、ヒーロー実態化、プライバシー更新、About連絡先（GitHub Issues）、収益報告導線
+- **ボトルネック:** サイト検索流入なし、AdSense却下、収益報告偏重、DLは給与明細集中だが絶対数は小さい
+- **計測（2026-07-13）:** How-to `/blog/salary-pdf-import-takehome-howto/` は sitemap 掲載・HTTP 200。`site:appblog-a4k.pages.dev` では未登録（公開直後）。GA（G-XFJJNW1RCT）・Search Console の PV／参照元／カバレッジはダッシュボード未連携のため数値未取得—手動確認要
+- **計測（2026-07-13・SC）:** 上記 How-to URL で Search Console のインデックス登録をリクエスト済み。リクエスト直後の `site:` 検索では **未反映**（反映まで数日かかることが多い）。**次回確認推奨: 2026-07-20**（登録有無・GA初回PV）
+- **計測（2026-07-20）:** `site:appblog-a4k.pages.dev salary-pdf-import-takehome-howto` およびドメイン全体とも **未登録**。How-to は HTTP 200・sitemap 掲載継続。GA（G-XFJJNW1RCT）PVはダッシュボード未連携のため未取得—手動確認要。**次回確認推奨: 2026-07-27**
+- **計測（2026-07-27）:** `site:appblog-a4k.pages.dev salary-pdf-import-takehome-howto` およびドメイン全体とも **未登録**（再確認）。How-to は HTTP 200・sitemap 掲載継続。SC リクエストから約2週間未反映—Search Console の URL 検査でカバレッジ理由の確認を推奨。**次回確認推奨: 2026-08-03**
+- **計測（2026-07-14・SC URL検査）:** Search Console 画面・API は未連携のため **カバレッジ表示（登録済／除外理由）は取得不可**。技術面は問題なし（HTTP 200・`robots.txt` Allow・`noindex` なし・canonical 正常・sitemap 掲載）。外部 `site:` は **未登録のまま** → 実質「未インデックス」。除外理由は SC の URL 検査画面を手動確認して追記すること
+- **計測（2026-07-20・GA）:** GA4 Data API 照会（`ga4 auth check`）—認証情報なしのため How-to（`/blog/salary-pdf-import-takehome-howto`）の **PV・参照元は取得不可**。本番 HTML に G-XFJJNW1RCT タグ出力は確認済み
+- **計測（GA認証）:** 未設定。手順は `playbooks/ga4-setup.md`（`npm run ga4:check` で確認）。Property ID は認証成功後に本セクションへ1行追記
+- **ASO（2026-07-14）:** 給与明細 App Store **説明文の先頭1段落**を How-to キーワード（PDF取り込み・手取り記録）に合わせて変更。正本は `src/data/apps.ts` の `appStoreDescriptionLead`。Connect 貼付用文案は `npm run store:lead`
+- **ASO（2026-07-14・Connect）:** `npm run store:verify` で公開ページ確認—**旧文案のまま**（Connect 未反映）。Connect で先頭段落を差し替え・提出後、再実行して反映日を本行に追記。DL比較は反映後2週間
+- **ASO（2026-07-14・Connect再確認）:** `npm run store:verify` → **未反映**（`reflected: false`、iTunes API 確認）。提出済みなら公開反映待ち（数日かかることが多い）。**次回確認推奨: Connect 提出後3日**（`npm run store:verify` が成功した日を反映日として上記 ASO 行に統合）
 
 ## 提案の出し方（1件のみ）
 

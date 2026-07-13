@@ -6,6 +6,8 @@ export type AppItem = {
   appStoreUrl: string;
   /** Content collection entry `id` for the app intro post */
   introSlug?: string;
+  /** App Store 説明文の先頭段落（Connect 反映用の正本） */
+  appStoreDescriptionLead?: string;
 };
 
 export const apps: AppItem[] = [
@@ -20,7 +22,10 @@ export const apps: AppItem[] = [
   },
   {
     name: "給与明細管理",
-    description: "毎月の給与明細と手取り推移を記録・比較できる管理アプリ。",
+    description:
+      "給与明細のPDF取り込みと手取り記録。月々の手取り・年収推移をグラフで確認できるiOSアプリ。",
+    appStoreDescriptionLead:
+      "給与明細のPDF取り込みと手取り記録に対応した収入管理アプリです。毎月の明細をPDF・写真・手入力で登録し、手取り・総支給・賞与・年収の推移をグラフで確認できます。",
     category: "Productivity",
     icon: "/images/apps/salary-tracker.jpg",
     appStoreUrl: "https://apps.apple.com/app/id6759832140",

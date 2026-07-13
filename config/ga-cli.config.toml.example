@@ -1,0 +1,2 @@
+credentials = "~/.config/ga-cli/sa.json"
+default_property = "properties/YOUR_NUMERIC_ID"

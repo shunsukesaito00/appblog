@@ -9,7 +9,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "ga4:check": "ga4 auth check --ping",
+    "ga4:howto": "node scripts/ga4-howto-report.mjs",
+    "store:lead": "node --experimental-strip-types scripts/store-lead.mjs",
+    "store:verify": "node --experimental-strip-types scripts/verify-store-lead.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
