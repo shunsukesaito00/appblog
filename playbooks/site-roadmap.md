@@ -29,25 +29,11 @@
 
 ## 現状スナップショット（2026年7月時点）
 
-- **済:** 収益報告複数月、アプリ紹介4本、分析1本、給与明細How-to2本（PDF取り込み／総支給と手取りの差）、ヒーロー実態化、プライバシー更新、About連絡先（GitHub Issues）、収益報告導線
+- **済:** 収益報告複数月、アプリ紹介4本、分析1本、給与明細How-to2本、ヒーロー実態化、プライバシー更新、About連絡先、収益報告導線、運用 playbook 4本
 - **ボトルネック:** サイト検索流入なし、AdSense却下、収益報告偏重、DLは給与明細集中だが絶対数は小さい
-- **コンテンツ（2026-07-14）:** How-to 追加 `/blog/salary-gross-takehome-gap-howto/`（収益数字なし）。収益報告以外の厚い記事は分析＋How-to2本で **3本**（フェーズ4の目安を満たす）
-- **計測（2026-07-14・新How-to）:** `/blog/salary-gross-takehome-gap-howto/` は本番 HTTP 200・sitemap 掲載。`site:appblog-a4k.pages.dev salary-gross-takehome-gap-howto` は **未登録**（公開直後）
-- **計測（2026-07-13）:** How-to `/blog/salary-pdf-import-takehome-howto/` は sitemap 掲載・HTTP 200。`site:appblog-a4k.pages.dev` では未登録（公開直後）。GA（G-XFJJNW1RCT）・Search Console の PV／参照元／カバレッジはダッシュボード未連携のため数値未取得—手動確認要
-- **計測（2026-07-13・SC）:** 上記 How-to URL で Search Console のインデックス登録をリクエスト済み。リクエスト直後の `site:` 検索では **未反映**（反映まで数日かかることが多い）。**次回確認推奨: 2026-07-20**（登録有無・GA初回PV）
-- **計測（2026-07-20）:** `site:appblog-a4k.pages.dev salary-pdf-import-takehome-howto` およびドメイン全体とも **未登録**。How-to は HTTP 200・sitemap 掲載継続。GA（G-XFJJNW1RCT）PVはダッシュボード未連携のため未取得—手動確認要。**次回確認推奨: 2026-07-27**
-- **計測（2026-07-27）:** `site:appblog-a4k.pages.dev salary-pdf-import-takehome-howto` およびドメイン全体とも **未登録**（再確認）。How-to は HTTP 200・sitemap 掲載継続。SC リクエストから約2週間未反映—Search Console の URL 検査でカバレッジ理由の確認を推奨。**次回確認推奨: 2026-08-03**
-- **計測（2026-07-14・SC URL検査）:** Search Console 画面・API は未連携のため **カバレッジ表示（登録済／除外理由）は取得不可**。技術面は問題なし（HTTP 200・`robots.txt` Allow・`noindex` なし・canonical 正常・sitemap 掲載）。外部 `site:` は **未登録のまま** → 実質「未インデックス」。除外理由は SC の URL 検査画面を手動確認して追記すること
-- **計測（2026-07-20・GA）:** GA4 Data API 照会（`ga4 auth check`）—認証情報なしのため How-to（`/blog/salary-pdf-import-takehome-howto`）の **PV・参照元は取得不可**。本番 HTML に G-XFJJNW1RCT タグ出力は確認済み
-- **計測（GA認証）:** 未設定。手順は `playbooks/ga4-setup.md`（`npm run ga4:check` で確認）。Property ID は認証成功後に本セクションへ1行追記
-- **ASO（2026-07-14）:** 給与明細 App Store **説明文の先頭1段落**を How-to キーワード（PDF取り込み・手取り記録）に合わせて変更。正本は `src/data/apps.ts` の `appStoreDescriptionLead`。Connect 貼付用文案は `npm run store:lead`
-- **ASO（2026-07-14・Connect）:** `npm run store:verify` で公開ページ確認—**旧文案のまま**（Connect 未反映）。Connect で先頭段落を差し替え・提出後、再実行して反映日を本行に追記。DL比較は反映後2週間
-- **ASO（2026-07-14・Connect再確認）:** `npm run store:verify` → **未反映**（`reflected: false`、iTunes API 確認）。提出済みなら公開反映待ち（数日かかることが多い）。**次回確認推奨: Connect 提出後3日**（`npm run store:verify` が成功した日を反映日として上記 ASO 行に統合）
-- **ASO（2026-07-14・Connect再々確認）:** `npm run store:verify` 再実行 → **未反映**（公開ページ先頭は旧文案のまま）。Connect への貼り付け・提出はエージェント不可。文案正本は `npm run store:lead`。**反映日は verify 成功時に追記**
-- **ASO（2026-07-14・提出後verify）:** 提出済み想定で `npm run store:verify` → **依然未反映**（`reflected: false`）。iTunes API 公開説明文は旧先頭のまま。メタデータ審査・CDN反映待ちの可能性。**反映日は未記入**。**次回: 24〜72時間後に再 verify**
-- **ASO（2026-07-14・verify再実行）:** curl 経由で iTunes lookup 再確認 → **未反映**。反映日は追記せず。短時間の連打確認を打ち切り、**次回確認は 2026-07-17 以降**
-- **ASO（2026-07-14・verify）:** `npm run store:verify` → **未反映**（公開説明文は旧先頭のまま）。反映日なし。次回確認は引き続き **2026-07-17 以降**
-- **運用（2026-07-14）:** SC URL検査は手動文言待ちのまま。待機中に `AGENTS.md` 参照の playbook 4本（debugging / refactoring / code-review / new-feature）をリポジトリに追加（`6ff01d0`）
+- **コンテンツ:** 収益報告以外の厚い記事は分析＋How-to2本で **3本**（フェーズ4の目安クリア）。How-to: `/blog/salary-pdf-import-takehome-howto/`・`/blog/salary-gross-takehome-gap-howto/`
+- **計測（要約）:** How-to2本とも本番 HTTP 200・sitemap 掲載・技術的にインデックス可。`site:` はドメイン／両 How-to とも **未登録**。SC で PDF How-to のインデックス登録はリクエスト済み（除外理由の画面文言は未取得）。GA（G-XFJJNW1RCT）タグは本番出力済だが Data API 認証未設定のため PV・参照元は未取得（手順: `playbooks/ga4-setup.md`）。**次回確認: 2026-08-03**（`site:`／SC）
+- **ASO（要約）:** 給与明細の説明文先頭を PDF取り込み・手取り記録に変更（正本: `apps.ts` の `appStoreDescriptionLead`、貼付: `npm run store:lead`）。公開ストアは **旧文案のまま**（`npm run store:verify` → 未反映）。**次回確認: 2026-07-17 以降**（成功日を反映日として追記、DL比較は反映後2週間）
 
 ## 提案の出し方（1件のみ）
 
