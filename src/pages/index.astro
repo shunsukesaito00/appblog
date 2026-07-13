@@ -9,10 +9,18 @@ import FeatureCard from "../components/FeatureCard.astro";
 import RoadmapStep from "../components/RoadmapStep.astro";
 import { apps } from "../data/apps";
 import { estimateReadingMinutesFromBody } from "../utils/readingTime";
+import { getLatestMonthlyRevenueReport } from "../utils/latestRevenueReport";
 
 const allPosts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
+const latestRevenueReport = getLatestMonthlyRevenueReport(allPosts);
+const latestRevenueReportLabel = latestRevenueReport
+  ? latestRevenueReport.data.pubDate.toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "long",
+    })
+  : "";
 const introSlugs = new Set(
   apps.map((a) => a.introSlug).filter((slug): slug is string => Boolean(slug)),
 );
@@ -41,8 +49,8 @@ const featureAreas = [
   {
     title: "副業収益化の検証",
     description: "収益化モデル、広告運用、継続率改善の検証をアプリ実績と合わせて公開します。",
-    href: "/apps",
-    linkLabel: "アプリを見る",
+    href: latestRevenueReport ? `/blog/${latestRevenueReport.id}` : "/apps",
+    linkLabel: latestRevenueReport ? "最新の収益報告を読む" : "アプリを見る",
   },
 ];
 ---
@@ -54,16 +62,45 @@ const featureAreas = [
 >
   <section class="card hero">
     <p class="eyebrow">個人開発 × 副業収益化</p>
-    <p class="hero-kicker">個人開発で月5万円を積み上げる</p>
+    <p class="hero-kicker">小さな数字から続ける、個人開発の収益ログ</p>
     <h1>会社員エンジニアが iOS で試す、実践ポートフォリオ。</h1>
     <p>
-      会社員エンジニアが iOSアプリを作り、App Store最適化で改善し、収益化まで回し続けるプロセスを公開しています。
+      会社員エンジニアが iOSアプリを作り、App Store最適化で改善し、収益化まで回し続けるプロセスを公開しています。まだ月数ドル規模の収益でも、数字は飾らず記録します。
     </p>
     <div class="cta-row">
       <a class="button" href="/apps">アプリを見る</a>
       <a class="button subtle" href="/blog">記事を読む</a>
+      {
+        latestRevenueReport && (
+          <a class="button subtle" href={`/blog/${latestRevenueReport.id}`}>
+            最新収益報告（{latestRevenueReportLabel}）
+          </a>
+        )
+      }
     </div>
   </section>
+
+  {
+    latestRevenueReport && (
+      <section>
+        <SectionHeader
+          title="最新の収益報告"
+          description="月次のAdMob収益とApp Store ConnectのDLログ"
+        />
+        <div class="card-grid cols-2">
+          <BlogCard
+            title={latestRevenueReport.data.title}
+            description={latestRevenueReport.data.description}
+            pubDate={latestRevenueReport.data.pubDate}
+            category={latestRevenueReport.data.category}
+            tags={latestRevenueReport.data.tags}
+            href={`/blog/${latestRevenueReport.id}`}
+            readingMinutes={estimateReadingMinutesFromBody(latestRevenueReport.body)}
+          />
+        </div>
+      </section>
+    )
+  }
 
   <section>
     <SectionHeader

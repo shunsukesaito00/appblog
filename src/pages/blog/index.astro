@@ -4,12 +4,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import { estimateReadingMinutesFromBody } from "../../utils/readingTime";
+import { getLatestMonthlyRevenueReport } from "../../utils/latestRevenueReport";
 
 const APP_INTRO_TAG = "アプリ紹介";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
+const latestRevenueReport = getLatestMonthlyRevenueReport(posts);
+const latestRevenueReportLabel = latestRevenueReport
+  ? latestRevenueReport.data.pubDate.toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "long",
+    })
+  : "";
 const introPosts = posts.filter((p) => p.data.tags.includes(APP_INTRO_TAG));
 const otherPosts = posts.filter((p) => !p.data.tags.includes(APP_INTRO_TAG));
 const showSplit = otherPosts.length > 0;
@@ -28,7 +36,38 @@ const showSplit = otherPosts.length > 0;
       <p class="blog-list-lead">
         アプリ紹介の記事を先頭に、そのほかの記事を新しい順で掲載しています。
       </p>
+      {
+        latestRevenueReport && (
+          <div class="cta-row blog-list-spotlight-cta">
+            <a class="button" href={`/blog/${latestRevenueReport.id}`}>
+              最新の収益報告（{latestRevenueReportLabel}）を読む
+            </a>
+          </div>
+        )
+      }
     </header>
+
+    {
+      latestRevenueReport && (
+        <section class="blog-revenue-spotlight">
+          <SectionHeader
+            title="最新の収益報告"
+            description="月次のAdMob収益とApp Store ConnectのDLログ"
+          />
+          <div class="card-grid cols-2 blog-list-grid">
+            <BlogCard
+              title={latestRevenueReport.data.title}
+              description={latestRevenueReport.data.description}
+              pubDate={latestRevenueReport.data.pubDate}
+              category={latestRevenueReport.data.category}
+              tags={latestRevenueReport.data.tags}
+              href={`/blog/${latestRevenueReport.id}`}
+              readingMinutes={estimateReadingMinutesFromBody(latestRevenueReport.body)}
+            />
+          </div>
+        </section>
+      )
+    }
 
     {
       showSplit ? (

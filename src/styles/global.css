@@ -498,6 +498,10 @@ section {
   font-size: 1.02rem;
 }
 
+.blog-list-spotlight-cta {
+  margin-top: 20px;
+}
+
 .page-blog .section-header {
   margin-top: 28px;
 }

@@ -4,46 +4,76 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="プライバシーポリシー | 個人開発ラボ"
-  description="個人開発ラボのプライバシーポリシーです。"
+  description="個人開発ラボのプライバシーポリシーです。Google AdSense・Google Analytics の利用について記載しています。"
   canonical="/privacy"
 >
-  <article class="card">
-    <h1>プライバシーポリシー</h1>
-    <p>
-      個人開発ラボ（以下、「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。
-    </p>
+  <article class="card article-shell">
+    <header class="article-header">
+      <h1>プライバシーポリシー</h1>
+      <p class="article-lead">
+        最終更新日: 2026年7月13日
+      </p>
+    </header>
 
-    <h2>広告配信について</h2>
-    <p>
-      当サイトでは、将来的にGoogle AdSenseなど第三者配信の広告サービスを利用する場合があります。
-      その際、ユーザーの興味に応じた広告表示のためCookieを使用することがあります。
-    </p>
-    <p>
-      Googleによるパーソナライズ広告の設定は、Googleが提供する広告設定ページから変更できる場合があります。
-    </p>
+    <div class="article-content prose">
+      <p>
+        個人開発ラボ（以下、「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。
+        本ポリシーは、当サイトにおける情報の取り扱いについて説明するものです。
+      </p>
 
-    <h2>アクセス解析について</h2>
-    <p>
-      当サイトでは、将来的にGoogle Analyticsなどのアクセス解析ツールを利用する場合があります。
-      これらのツールはトラフィックデータ収集のためCookieを使用することがあります。
-    </p>
+      <h2>広告配信について（Google AdSense）</h2>
+      <p>
+        当サイトでは、<strong>Google AdSense</strong>（第三者配信の広告サービス）を利用しています。
+        広告配信事業者は、ユーザーの興味に応じた広告を表示するため、Cookie 等を使用して当サイトや他サイトへの過去のアクセス情報に基づく広告を配信することがあります。
+      </p>
+      <p>
+        Google およびそのパートナーは、Cookie を使用して当サイトへの訪問・他サイトへの訪問に基づき広告を配信します。
+        ユーザーは、<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google 広告設定</a>から、パーソナライズ広告を無効にできます。
+        また、<a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">aboutads.info</a> にアクセスすると、第三者配信事業者の Cookie によるパーソナライズ広告を無効にできます。
+      </p>
+      <p>
+        Google の広告におけるデータ利用については、<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google の広告に関するポリシー</a>および<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a>をご確認ください。
+      </p>
 
-    <h2>アフィリエイトリンクについて</h2>
-    <p>
-      当サイトでは、将来的にアフィリエイトプログラムを利用し、商品・サービスを紹介する場合があります。
-      リンク先で提供される情報・サービスについては、リンク先の規約をご確認ください。
-    </p>
+      <h2>アクセス解析について（Google Analytics）</h2>
+      <p>
+        当サイトでは、<strong>Google Analytics</strong>（アクセス解析ツール）を利用しています。
+        Google Analytics は Cookie を使用して、当サイトの利用状況（ページ閲覧数、滞在時間、参照元など）を収集します。
+        収集されたデータは Google により分析・保管され、当サイトの改善に利用します。
+      </p>
+      <p>
+        Google Analytics によるデータ収集の仕組みや Google のプライバシーポリシーについては、<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a>をご確認ください。
+        ブラウザのアドオンにより Google Analytics を無効にできる場合があります（<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics オプトアウト アドオン</a>）。
+      </p>
 
-    <h2>外部リンクについて</h2>
-    <p>
-      当サイトはApp Storeを含む外部サイトへのリンクを掲載しています。外部サイトで提供される情報や
-      サービスに関して当サイトは責任を負いません。
-    </p>
+      <h2>Cookie について</h2>
+      <p>
+        当サイトでは、上記の広告配信・アクセス解析のほか、サイトの利便性向上のために Cookie を使用する場合があります。
+        Cookie はブラウザの設定から無効にできますが、一部の機能が利用できなくなる場合があります。
+      </p>
 
-    <h2>免責事項</h2>
-    <p>
-      当サイトの情報は可能な限り正確な内容を掲載するよう努めていますが、正確性・安全性を保証するものではありません。
-      当サイトの情報に基づいて生じた損害について、一切の責任を負いかねます。
-    </p>
+      <h2>アフィリエイトリンクについて</h2>
+      <p>
+        当サイトでは、将来的にアフィリエイトプログラムを利用し、商品・サービスを紹介する場合があります。
+        リンク先で提供される情報・サービスについては、リンク先の規約をご確認ください。
+      </p>
+
+      <h2>外部リンクについて</h2>
+      <p>
+        当サイトは App Store を含む外部サイトへのリンクを掲載しています。外部サイトで提供される情報や
+        サービスに関して当サイトは責任を負いません。
+      </p>
+
+      <h2>免責事項</h2>
+      <p>
+        当サイトの情報は可能な限り正確な内容を掲載するよう努めていますが、正確性・安全性を保証するものではありません。
+        当サイトの情報に基づいて生じた損害について、一切の責任を負いかねます。
+      </p>
+
+      <h2>お問い合わせ</h2>
+      <p>
+        本ポリシーに関するお問い合わせは、<a href="/about">運営者情報</a>ページをご確認ください。
+      </p>
+    </div>
   </article>
 </BaseLayout>
