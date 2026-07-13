@@ -41,6 +41,8 @@
 - **ASO（2026-07-14）:** 給与明細 App Store **説明文の先頭1段落**を How-to キーワード（PDF取り込み・手取り記録）に合わせて変更。正本は `src/data/apps.ts` の `appStoreDescriptionLead`。Connect 貼付用文案は `npm run store:lead`
 - **ASO（2026-07-14・Connect）:** `npm run store:verify` で公開ページ確認—**旧文案のまま**（Connect 未反映）。Connect で先頭段落を差し替え・提出後、再実行して反映日を本行に追記。DL比較は反映後2週間
 - **ASO（2026-07-14・Connect再確認）:** `npm run store:verify` → **未反映**（`reflected: false`、iTunes API 確認）。提出済みなら公開反映待ち（数日かかることが多い）。**次回確認推奨: Connect 提出後3日**（`npm run store:verify` が成功した日を反映日として上記 ASO 行に統合）
+- **ASO（2026-07-14・Connect再々確認）:** `npm run store:verify` 再実行 → **未反映**（公開ページ先頭は旧文案のまま）。Connect への貼り付け・提出はエージェント不可。文案正本は `npm run store:lead`。**反映日は verify 成功時に追記**
+- **ASO（2026-07-14・提出後verify）:** 提出済み想定で `npm run store:verify` → **依然未反映**（`reflected: false`）。iTunes API 公開説明文は旧先頭のまま。メタデータ審査・CDN反映待ちの可能性。**反映日は未記入**。**次回: 24〜72時間後に再 verify**
 
 ## 提案の出し方（1件のみ）
 
