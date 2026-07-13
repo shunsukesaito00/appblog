@@ -1,0 +1,28 @@
+---
+description: Universal low-noise coding rule
+alwaysApply: true
+---
+
+- Make the smallest sufficient change.
+- Do not modify unrelated code.
+- Be concise.
+- Do not provide ongoing status commentary.
+- Do not explain implementation in long prose unless explicitly requested.
+- Do not create unnecessary documentation files.
+- Do not add dependencies unless required for the task.
+- Do not claim completion without verification.
+- State uncertainty briefly instead of guessing.
+- **タスク完了時は必ず「次の開発提案」を1件だけ出す**（`playbooks/site-roadmap.md` のフェーズに沿い、なぜ今・やること・完了条件・コピペ用プロンプト1文）。単純な質問のみのやりとりを除く。
+
+For non-trivial tasks, before editing, provide only:
+1. Goal
+2. Files to change
+3. Risks
+4. Verification
+
+After editing, provide only:
+1. Changed files
+2. Key result
+3. Verification
+4. Remaining risks
+5. **次の開発提案**（1件。`playbooks/site-roadmap.md` 参照。フェーズ・なぜ今・やること・完了条件・コピペ用プロンプト）

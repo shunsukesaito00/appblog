@@ -18,7 +18,8 @@ this project, read the matching playbook BEFORE starting the task and follow
 it: `playbooks/debugging.md` for bug investigation, `playbooks/refactoring.md`
 for restructuring existing code, `playbooks/code-review.md` for reviewing
 changes, `playbooks/new-feature.md` for building new functionality,
-`playbooks/revenue-report.md` for revenue report blog posts. The same
+`playbooks/revenue-report.md` for revenue report blog posts,
+`playbooks/site-roadmap.md` when proposing the next development step. The same
 applies to any project-specific documents referenced from this file: read
 them regardless of which agent you are.
 
@@ -414,7 +415,7 @@ easy to change if you want something else."
 - Do not add dependencies unless required for the task.
 - Do not claim completion without verification.
 - State uncertainty briefly instead of guessing.
-- **タスク完了時は必ず「次の開発提案」を出す**（1〜3件、コピペ可能なプロンプト形式）。単純な質問のみのやりとりを除く。
+- **タスク完了時は必ず「次の開発提案」を1件だけ出す**（`playbooks/site-roadmap.md` のフェーズに沿う）。単純な質問のみのやりとりを除く。
 
 For non-trivial tasks, before editing, provide only:
 
@@ -429,9 +430,11 @@ After editing, provide only:
 2. Key result
 3. Verification
 4. Remaining risks
-5. **次の開発提案**（1〜3件。今回の作業内容・数値・未着手事項に根拠を置く）
+5. **次の開発提案**（1件。`playbooks/site-roadmap.md` 参照）
 
 **収益報告タスク:** 作業前に `playbooks/revenue-report.md` を読み、記事テンプレ `src/content/blog-templates/revenue-report-seo-template.mdx` に沿って作成する。
+
+**サイト全体タスク:** 次の開発提案を出す前に `playbooks/site-roadmap.md` を読み、フェーズに沿って1件に絞る。
 
 **Stack:** Astro static site (`src/pages`, `src/content/blog`, Cloudflare Pages).
 **Secrets:** `.env` is gitignored; use `PUBLIC_*` env vars for client-side IDs.
