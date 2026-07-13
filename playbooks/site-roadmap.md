@@ -43,6 +43,7 @@
 - **ASO（2026-07-14・Connect再確認）:** `npm run store:verify` → **未反映**（`reflected: false`、iTunes API 確認）。提出済みなら公開反映待ち（数日かかることが多い）。**次回確認推奨: Connect 提出後3日**（`npm run store:verify` が成功した日を反映日として上記 ASO 行に統合）
 - **ASO（2026-07-14・Connect再々確認）:** `npm run store:verify` 再実行 → **未反映**（公開ページ先頭は旧文案のまま）。Connect への貼り付け・提出はエージェント不可。文案正本は `npm run store:lead`。**反映日は verify 成功時に追記**
 - **ASO（2026-07-14・提出後verify）:** 提出済み想定で `npm run store:verify` → **依然未反映**（`reflected: false`）。iTunes API 公開説明文は旧先頭のまま。メタデータ審査・CDN反映待ちの可能性。**反映日は未記入**。**次回: 24〜72時間後に再 verify**
+- **ASO（2026-07-14・verify再実行）:** curl 経由で iTunes lookup 再確認 → **未反映**。反映日は追記せず。短時間の連打確認は打ち切り、**次回確認は 2026-07-17 以降**
 
 ## 提案の出し方（1件のみ）
 
