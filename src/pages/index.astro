@@ -31,6 +31,7 @@ const featuredApps = apps.slice(0, 3);
 const usefulGuideIds = new Set([
   "salary-pdf-import-takehome-howto",
   "salary-gross-takehome-gap-howto",
+  "salary-bonus-record-howto",
   "indie-ios-app-not-growing-analysis",
 ]);
 const isRevenueReport = (id: string) => id.startsWith("revenue-report");
@@ -97,7 +98,7 @@ const featureAreas = [
       title="実務ガイド・分析"
       description="検索意図に応えるHow-toと、公開数字に基づく伸び悩みの整理"
     />
-    <div class="card-grid cols-3">
+    <div class="card-grid cols-2">
       {
         usefulGuides.map((post) => (
           <BlogCard
