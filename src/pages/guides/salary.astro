@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+
+const guides = [
+  {
+    href: "/blog/salary-pdf-import-takehome-howto",
+    title: "給与明細 PDF 取り込みと手取り記録のやり方",
+  },
+  {
+    href: "/blog/salary-gross-takehome-gap-howto",
+    title: "手取りと総支給の差を毎月記録する理由とやり方",
+  },
+  {
+    href: "/blog/salary-bonus-record-howto",
+    title: "賞与を給与明細アプリにどう残すか",
+  },
+];
+---
+
+<BaseLayout
+  title="給与明細ガイド｜手取り・PDF・賞与のまとめ | 個人開発ラボ"
+  description="給与明細のPDF取り込み、手取りと総支給の差、賞与の残し方など、実務ガイドと給与明細管理アプリ紹介への入口です。"
+  canonical="/guides/salary"
+>
+  <article class="card article-shell">
+    <header class="article-header">
+      <p class="article-eyebrow">Guides</p>
+      <h1>給与明細ガイド</h1>
+      <p class="article-lead">
+        手取り・総支給・賞与をスマホで残すときの実務記事と、iOSアプリ紹介への入口です。検索・内部リンク用の短いハブとしてまとめています。
+      </p>
+    </header>
+
+    <div class="article-content prose">
+      <p>
+        給与明細まわりは記事が分かれやすいので、ここで目的別に辿れます。税務・申告の代行や正確な計算保証はしません。一般的な記録の考え方です。
+      </p>
+    </div>
+
+    <SectionHeader title="実務ガイド（How-to）" description="やりたいことから選ぶ" />
+    <nav class="card app-intro-nav" aria-label="給与明細の実務ガイド">
+      <ul>
+        {
+          guides.map((g) => (
+            <li>
+              <a href={g.href}>{g.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <SectionHeader title="アプリ紹介" description="機能・保存方針・向き不向き" />
+    <nav class="card app-intro-nav" aria-label="給与明細管理アプリ紹介">
+      <ul>
+        <li>
+          <a href="/blog/app-intro-salary">「給与明細管理」アプリ紹介</a>
+        </li>
+      </ul>
+      <div class="cta-row">
+        <a class="button" href="https://apps.apple.com/app/id6759832140" target="_blank" rel="noopener noreferrer"
+          >App Store で見る</a
+        >
+        <a class="button subtle" href="/blog">ブログ一覧</a>
+        <a class="button subtle" href="/apps">アプリ一覧</a>
+      </div>
+    </nav>
+  </article>
+</BaseLayout>

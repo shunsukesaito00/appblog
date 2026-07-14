@@ -49,9 +49,9 @@ const categories = [...new Set(allPosts.map((post) => post.data.category))].sort
 const featureAreas = [
   {
     title: "実務ガイド・How-to",
-    description: "給与明細のPDF取り込みや手取り記録など、検索意図に応える実務記事をまとめています。",
-    href: "/blog/salary-pdf-import-takehome-howto",
-    linkLabel: "PDF取り込みガイドを読む",
+    description: "給与明細のPDF取り込みや手取り・賞与の記録など、検索意図に応える実務記事をまとめています。",
+    href: "/guides/salary",
+    linkLabel: "給与明細ガイドを見る",
   },
   {
     title: "個人開発の分析",
@@ -81,7 +81,7 @@ const featureAreas = [
       給与明細などの実務ガイドと、公開数字に基づく分析・検証ログをまとめています。まだ月数ドル規模の収益でも、数字は飾らず記録します。
     </p>
     <div class="cta-row">
-      <a class="button" href="/blog/salary-pdf-import-takehome-howto">実務ガイドを読む</a>
+      <a class="button" href="/guides/salary">実務ガイドを読む</a>
       <a class="button subtle" href="/apps">アプリを見る</a>
       {
         latestRevenueReport && (
