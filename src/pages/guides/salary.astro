@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import { apps } from "../../data/apps";
 
+const salaryApp = apps.find((app) => app.name === "給与明細管理");
 const guides = [
   {
     href: "/blog/salary-pdf-import-takehome-howto",
@@ -51,7 +53,7 @@ const guides = [
       </ul>
     </nav>
 
-    <SectionHeader title="アプリ紹介" description="機能・保存方針・向き不向き" />
+    <SectionHeader title="アプリ紹介" description="機能・保存方針・向き不向き。App Store はここから" />
     <nav class="card app-intro-nav" aria-label="給与明細管理アプリ紹介">
       <ul>
         <li>
@@ -59,9 +61,18 @@ const guides = [
         </li>
       </ul>
       <div class="cta-row">
-        <a class="button" href="https://apps.apple.com/app/id6759832140" target="_blank" rel="noopener noreferrer"
-          >App Store で見る</a
-        >
+        {
+          salaryApp && (
+            <a
+              class="button"
+              href={salaryApp.appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              App Storeで試す
+            </a>
+          )
+        }
         <a class="button subtle" href="/blog">ブログ一覧</a>
         <a class="button subtle" href="/apps">アプリ一覧</a>
       </div>
