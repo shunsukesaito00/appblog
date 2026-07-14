@@ -7,6 +7,11 @@ import { estimateReadingMinutesFromBody } from "../../utils/readingTime";
 import { getLatestMonthlyRevenueReport } from "../../utils/latestRevenueReport";
 
 const APP_INTRO_TAG = "アプリ紹介";
+const usefulGuideIds = new Set([
+  "salary-pdf-import-takehome-howto",
+  "salary-gross-takehome-gap-howto",
+  "indie-ios-app-not-growing-analysis",
+]);
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
@@ -18,14 +23,19 @@ const latestRevenueReportLabel = latestRevenueReport
       month: "long",
     })
   : "";
+const usefulGuides = posts.filter((p) => usefulGuideIds.has(p.id));
 const introPosts = posts.filter((p) => p.data.tags.includes(APP_INTRO_TAG));
-const otherPosts = posts.filter((p) => !p.data.tags.includes(APP_INTRO_TAG));
-const showSplit = otherPosts.length > 0;
+const otherPosts = posts.filter(
+  (p) =>
+    !p.data.tags.includes(APP_INTRO_TAG) &&
+    !usefulGuideIds.has(p.id) &&
+    !(latestRevenueReport && p.id === latestRevenueReport.id),
+);
 ---
 
 <BaseLayout
   title="ブログ一覧 | 個人開発ラボ"
-  description="自作iOSアプリの紹介記事と、個人開発・副業収益化・App Store改善のログです。"
+  description="給与明細などの実務ガイド、伸び悩み分析、アプリ紹介、個人開発の検証ログをまとめています。"
   canonical="/blog"
   ogType="article"
 >
@@ -34,25 +44,63 @@ const showSplit = otherPosts.length > 0;
       <p class="blog-list-eyebrow">Journal</p>
       <h1 class="blog-list-title">ブログ</h1>
       <p class="blog-list-lead">
-        アプリ紹介の記事を先頭に、そのほかの記事を新しい順で掲載しています。
+        実務ガイドと分析を先に、アプリ紹介・検証ログをそのあとに並べています。
       </p>
-      {
-        latestRevenueReport && (
-          <div class="cta-row blog-list-spotlight-cta">
-            <a class="button" href={`/blog/${latestRevenueReport.id}`}>
-              最新の収益報告（{latestRevenueReportLabel}）を読む
+      <div class="cta-row blog-list-spotlight-cta">
+        <a class="button" href="/blog/salary-pdf-import-takehome-howto">
+          実務ガイドを読む
+        </a>
+        {
+          latestRevenueReport && (
+            <a class="button subtle" href={`/blog/${latestRevenueReport.id}`}>
+              最新の収益ログ（{latestRevenueReportLabel}）
             </a>
-          </div>
-        )
-      }
+          )
+        }
+      </div>
     </header>
+
+    <section>
+      <SectionHeader
+        title="実務ガイド・分析"
+        description="検索意図に応えるHow-toと、公開数字に基づく整理"
+      />
+      <div class="card-grid cols-2 blog-list-grid">
+        {usefulGuides.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            href={`/blog/${post.id}`}
+            readingMinutes={estimateReadingMinutesFromBody(post.body)}
+          />
+        ))}
+      </div>
+    </section>
+
+    <SectionHeader title="アプリ紹介記事" description="機能・実績・ストア導線" />
+    <div class="card-grid cols-2 blog-list-grid">
+      {introPosts.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          href={`/blog/${post.id}`}
+          readingMinutes={estimateReadingMinutesFromBody(post.body)}
+        />
+      ))}
+    </div>
 
     {
       latestRevenueReport && (
         <section class="blog-revenue-spotlight">
           <SectionHeader
-            title="最新の収益報告"
-            description="月次のAdMob収益とApp Store ConnectのDLログ"
+            title="最新の収益ログ"
+            description="月次のAdMobとDLの検証メモ"
           />
           <div class="card-grid cols-2 blog-list-grid">
             <BlogCard
@@ -70,43 +118,11 @@ const showSplit = otherPosts.length > 0;
     }
 
     {
-      showSplit ? (
+      otherPosts.length > 0 && (
         <>
-          <SectionHeader title="アプリ紹介記事" description="機能・実績・ストア導線" />
-          <div class="card-grid cols-2 blog-list-grid">
-            {introPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                category={post.data.category}
-                tags={post.data.tags}
-                href={`/blog/${post.id}`}
-                readingMinutes={estimateReadingMinutesFromBody(post.body)}
-              />
-            ))}
-          </div>
-
           <SectionHeader title="その他の記事" description="新しい順" />
           <div class="card-grid cols-2 blog-list-grid">
             {otherPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                category={post.data.category}
-                tags={post.data.tags}
-                href={`/blog/${post.id}`}
-                readingMinutes={estimateReadingMinutesFromBody(post.body)}
-              />
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <SectionHeader title="アプリ紹介記事" description="新しい順" />
-          <div class="card-grid cols-2 blog-list-grid">
-            {introPosts.map((post) => (
               <BlogCard
                 title={post.data.title}
                 description={post.data.description}

@@ -28,29 +28,41 @@ const appIntroPosts = allPosts
   .filter((post) => introSlugs.has(post.id))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const featuredApps = apps.slice(0, 3);
-const popularPosts = allPosts.slice(0, 3);
+const usefulGuideIds = new Set([
+  "salary-pdf-import-takehome-howto",
+  "salary-gross-takehome-gap-howto",
+  "indie-ios-app-not-growing-analysis",
+]);
+const isRevenueReport = (id: string) => id.startsWith("revenue-report");
+const usefulGuides = allPosts.filter((post) => usefulGuideIds.has(post.id));
+const popularPosts = [
+  ...usefulGuides,
+  ...allPosts.filter(
+    (post) => !usefulGuideIds.has(post.id) && !isRevenueReport(post.id),
+  ),
+].slice(0, 3);
 const categories = [...new Set(allPosts.map((post) => post.data.category))].sort(
   (a, b) => a.localeCompare(b, "ja"),
 );
 
 const featureAreas = [
   {
-    title: "個人開発の戦略と実行",
-    description: "会社員でも継続できるテーマ選定、開発サイクル、改善手順をまとめています。",
-    href: "/blog",
-    linkLabel: "記事一覧を見る",
+    title: "実務ガイド・How-to",
+    description: "給与明細のPDF取り込みや手取り記録など、検索意図に応える実務記事をまとめています。",
+    href: "/blog/salary-pdf-import-takehome-howto",
+    linkLabel: "PDF取り込みガイドを読む",
   },
   {
-    title: "ASOとApp Store改善",
-    description: "検索キーワード、スクリーンショット、CVR改善の実践ログを記録しています。",
-    href: "/categories",
-    linkLabel: "カテゴリから探す",
+    title: "個人開発の分析",
+    description: "DLと収益のズレなど、公開数字に基づく伸び悩みの整理を掲載しています。",
+    href: "/blog/indie-ios-app-not-growing-analysis",
+    linkLabel: "分析記事を読む",
   },
   {
-    title: "副業収益化の検証",
-    description: "収益化モデル、広告運用、継続率改善の検証をアプリ実績と合わせて公開します。",
-    href: latestRevenueReport ? `/blog/${latestRevenueReport.id}` : "/apps",
-    linkLabel: latestRevenueReport ? "最新の収益報告を読む" : "アプリを見る",
+    title: "副業収益の検証ログ",
+    description: "小さなAdMob数字も飾らず、月次で残しています（誇大な約束はしません）。",
+    href: latestRevenueReport ? `/blog/${latestRevenueReport.id}` : "/blog",
+    linkLabel: latestRevenueReport ? "最新の収益ログを見る" : "記事一覧を見る",
   },
 ];
 ---
@@ -61,51 +73,67 @@ const featureAreas = [
   canonical="/"
 >
   <section class="card hero">
-    <p class="eyebrow">個人開発 × 副業収益化</p>
-    <p class="hero-kicker">小さな数字から続ける、個人開発の収益ログ</p>
+    <p class="eyebrow">実務ガイド × 正直な検証ログ</p>
+    <p class="hero-kicker">小さな数字から続く、個人開発の実務と記録</p>
     <h1>会社員エンジニアが iOS で試す、実践ポートフォリオ。</h1>
     <p>
-      会社員エンジニアが iOSアプリを作り、App Store最適化で改善し、収益化まで回し続けるプロセスを公開しています。まだ月数ドル規模の収益でも、数字は飾らず記録します。
+      給与明細などの実務ガイドと、公開数字に基づく分析・検証ログをまとめています。まだ月数ドル規模の収益でも、数字は飾らず記録します。
     </p>
     <div class="cta-row">
-      <a class="button" href="/apps">アプリを見る</a>
-      <a class="button subtle" href="/blog">記事を読む</a>
+      <a class="button" href="/blog/salary-pdf-import-takehome-howto">実務ガイドを読む</a>
+      <a class="button subtle" href="/apps">アプリを見る</a>
       {
         latestRevenueReport && (
           <a class="button subtle" href={`/blog/${latestRevenueReport.id}`}>
-            最新収益報告（{latestRevenueReportLabel}）
+            最新収益ログ（{latestRevenueReportLabel}）
           </a>
         )
       }
     </div>
   </section>
 
-  {
-    latestRevenueReport && (
-      <section>
-        <SectionHeader
-          title="最新の収益報告"
-          description="月次のAdMob収益とApp Store ConnectのDLログ"
-        />
-        <div class="card-grid cols-2">
+  <section>
+    <SectionHeader
+      title="実務ガイド・分析"
+      description="検索意図に応えるHow-toと、公開数字に基づく伸び悩みの整理"
+    />
+    <div class="card-grid cols-3">
+      {
+        usefulGuides.map((post) => (
           <BlogCard
-            title={latestRevenueReport.data.title}
-            description={latestRevenueReport.data.description}
-            pubDate={latestRevenueReport.data.pubDate}
-            category={latestRevenueReport.data.category}
-            tags={latestRevenueReport.data.tags}
-            href={`/blog/${latestRevenueReport.id}`}
-            readingMinutes={estimateReadingMinutesFromBody(latestRevenueReport.body)}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            href={`/blog/${post.id}`}
+            readingMinutes={estimateReadingMinutesFromBody(post.body)}
           />
-        </div>
-      </section>
-    )
-  }
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <SectionHeader title="このサイトで読めること" description="ガイドを先に、検証ログは正直に" />
+    <div class="card-grid cols-3">
+      {
+        featureAreas.map((area) => (
+          <FeatureCard
+            title={area.title}
+            description={area.description}
+            href={area.href}
+            linkLabel={area.linkLabel}
+          />
+        ))
+      }
+    </div>
+  </section>
 
   <section>
     <SectionHeader
-      title="人気の記事"
-      description="直近の記事から3本を掲載しています。"
+      title="おすすめ記事"
+      description="How-to・分析を優先して掲載しています。"
     />
     <div class="card-grid cols-3">
       {
@@ -124,21 +152,27 @@ const featureAreas = [
     </div>
   </section>
 
-  <section>
-    <SectionHeader title="このサイトで読めること" description="収益化までを一気通貫で追える構成です" />
-    <div class="card-grid cols-3">
-      {
-        featureAreas.map((area) => (
-          <FeatureCard
-            title={area.title}
-            description={area.description}
-            href={area.href}
-            linkLabel={area.linkLabel}
+  {
+    latestRevenueReport && (
+      <section>
+        <SectionHeader
+          title="最新の収益ログ"
+          description="月次のAdMobとDLの検証メモ（誇大な約束はしません）"
+        />
+        <div class="card-grid cols-2">
+          <BlogCard
+            title={latestRevenueReport.data.title}
+            description={latestRevenueReport.data.description}
+            pubDate={latestRevenueReport.data.pubDate}
+            category={latestRevenueReport.data.category}
+            tags={latestRevenueReport.data.tags}
+            href={`/blog/${latestRevenueReport.id}`}
+            readingMinutes={estimateReadingMinutesFromBody(latestRevenueReport.body)}
           />
-        ))
-      }
-    </div>
-  </section>
+        </div>
+      </section>
+    )
+  }
 
   <section>
     <SectionHeader title="収益化ロードマップ" description="作る、出す、改善する、収益化する" />
