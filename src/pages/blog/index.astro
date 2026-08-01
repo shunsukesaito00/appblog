@@ -37,22 +37,25 @@ const showSplit = otherPosts.length > 0;
         2026年7月の AdMob 合計は $0.91。4〜7月は収益約921円に対し、Cursor と Apple
         年会費（按分）で約4.3万円の赤字でした。下はアプリ紹介と、そのほかの記事です。
       </p>
-      {
-        latestRevenueReport && (
-          <div class="cta-row blog-list-spotlight-cta">
+      <div class="cta-row blog-list-spotlight-cta">
+        {
+          latestRevenueReport && (
             <a class="button" href={`/blog/${latestRevenueReport.id}`}>
               {latestRevenueReportLabel}の収益報告
             </a>
-            {
-              pnlReport && (
-                <a class="button subtle" href={`/blog/${pnlReport.id}`}>
-                  4〜7月の損益
-                </a>
-              )
-            }
-          </div>
-        )
-      }
+          )
+        }
+        {
+          pnlReport && (
+            <a class="button subtle" href={`/blog/${pnlReport.id}`}>
+              4〜7月の損益
+            </a>
+          )
+        }
+        <a class="button subtle" href="/guides/salary">
+          給与明細ガイド（PDF・手取り・賞与）
+        </a>
+      </div>
     </header>
 
     {
