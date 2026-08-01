@@ -4,9 +4,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import AppCard from "../components/AppCard.astro";
 import BlogCard from "../components/BlogCard.astro";
-import CategoryBadge from "../components/CategoryBadge.astro";
-import FeatureCard from "../components/FeatureCard.astro";
-import RoadmapStep from "../components/RoadmapStep.astro";
 import { apps } from "../data/apps";
 import { estimateReadingMinutesFromBody } from "../utils/readingTime";
 import { getLatestMonthlyRevenueReport } from "../utils/latestRevenueReport";
@@ -21,135 +18,45 @@ const latestRevenueReportLabel = latestRevenueReport
       month: "long",
     })
   : "";
-const introSlugs = new Set(
-  apps.map((a) => a.introSlug).filter((slug): slug is string => Boolean(slug)),
-);
-const appIntroPosts = allPosts
-  .filter((post) => introSlugs.has(post.id))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const pnlReport = allPosts.find((post) => post.id === "revenue-report-2026-apr-jul-pnl");
 const featuredApps = apps.slice(0, 3);
-const usefulGuideIds = new Set([
-  "salary-pdf-import-takehome-howto",
-  "salary-gross-takehome-gap-howto",
-  "salary-bonus-record-howto",
-  "indie-ios-app-not-growing-analysis",
-]);
-const isRevenueReport = (id: string) => id.startsWith("revenue-report");
-const usefulGuides = allPosts.filter((post) => usefulGuideIds.has(post.id));
-const popularPosts = [
-  ...usefulGuides,
-  ...allPosts.filter(
-    (post) => !usefulGuideIds.has(post.id) && !isRevenueReport(post.id),
-  ),
-].slice(0, 3);
-const categories = [...new Set(allPosts.map((post) => post.data.category))].sort(
-  (a, b) => a.localeCompare(b, "ja"),
-);
-
-const featureAreas = [
-  {
-    title: "実務ガイド・How-to",
-    description: "給与明細のPDF取り込みや手取り・賞与の記録など、検索意図に応える実務記事をまとめています。",
-    href: "/guides/salary",
-    linkLabel: "給与明細ガイドを見る",
-  },
-  {
-    title: "個人開発の分析",
-    description: "DLと収益のズレなど、公開数字に基づく伸び悩みの整理を掲載しています。",
-    href: "/blog/indie-ios-app-not-growing-analysis",
-    linkLabel: "分析記事を読む",
-  },
-  {
-    title: "副業収益の検証ログ",
-    description: "小さなAdMob数字も飾らず、月次で残しています（誇大な約束はしません）。",
-    href: latestRevenueReport ? `/blog/${latestRevenueReport.id}` : "/blog",
-    linkLabel: latestRevenueReport ? "最新の収益ログを見る" : "記事一覧を見る",
-  },
-];
+const recentPosts = allPosts
+  .filter(
+    (post) =>
+      post.id !== latestRevenueReport?.id && post.id !== pnlReport?.id,
+  )
+  .slice(0, 3);
 ---
 
 <BaseLayout
-  title="個人開発ラボ | 個人開発・副業収益化・iOSアプリ改善の実践ブログ"
-  description="個人開発で副業収益化を目指す会社員エンジニアが、iOSアプリ開発、ASO、App Store改善、Cursor/Codex活用を実践記録するブログです。"
+  title="個人開発ラボ"
+  description="2026年7月のAdMob合計は$0.91。4〜7月の損益は約−4.2万円。会社員エンジニアのiOS個人開発の数字ログです。"
   canonical="/"
 >
   <section class="card hero">
-    <p class="eyebrow">実務ガイド × 正直な検証ログ</p>
-    <p class="hero-kicker">小さな数字から続く、個人開発の実務と記録</p>
-    <h1>会社員エンジニアが iOS で試す、実践ポートフォリオ。</h1>
+    <p class="hero-kicker">個人開発ラボ</p>
+    <h1>2026年7月の AdMob は $0.91。4〜7月は約−4.2万円。</h1>
     <p>
-      給与明細などの実務ガイドと、公開数字に基づく分析・検証ログをまとめています。まだ月数ドル規模の収益でも、数字は飾らず記録します。
+      会社員の傍らで iOS アプリを出しています。7月は更新がほぼなく、全アプリ合算の推定収益は
+      $0.91 でした。4〜7月をまとめると、AdMob 約921円に対し Cursor Pro+ と Apple
+      年会費（按分）だけで約4.3万円。広告では全くペイしていません。
     </p>
     <div class="cta-row">
-      <a class="button" href="/guides/salary">実務ガイドを読む</a>
-      <a class="button subtle" href="/apps">アプリを見る</a>
       {
         latestRevenueReport && (
-          <a class="button subtle" href={`/blog/${latestRevenueReport.id}`}>
-            最新収益ログ（{latestRevenueReportLabel}）
+          <a class="button" href={`/blog/${latestRevenueReport.id}`}>
+            {latestRevenueReportLabel}の収益報告
           </a>
         )
       }
-    </div>
-  </section>
-
-  <section>
-    <SectionHeader
-      title="実務ガイド・分析"
-      description="検索意図に応えるHow-toと、公開数字に基づく伸び悩みの整理"
-    />
-    <div class="card-grid cols-2">
       {
-        usefulGuides.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            category={post.data.category}
-            tags={post.data.tags}
-            href={`/blog/${post.id}`}
-            readingMinutes={estimateReadingMinutesFromBody(post.body)}
-          />
-        ))
+        pnlReport && (
+          <a class="button subtle" href={`/blog/${pnlReport.id}`}>
+            4〜7月の損益
+          </a>
+        )
       }
-    </div>
-  </section>
-
-  <section>
-    <SectionHeader title="このサイトで読めること" description="ガイドを先に、検証ログは正直に" />
-    <div class="card-grid cols-3">
-      {
-        featureAreas.map((area) => (
-          <FeatureCard
-            title={area.title}
-            description={area.description}
-            href={area.href}
-            linkLabel={area.linkLabel}
-          />
-        ))
-      }
-    </div>
-  </section>
-
-  <section>
-    <SectionHeader
-      title="おすすめ記事"
-      description="How-to・分析を優先して掲載しています。"
-    />
-    <div class="card-grid cols-3">
-      {
-        popularPosts.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            category={post.data.category}
-            tags={post.data.tags}
-            href={`/blog/${post.id}`}
-            readingMinutes={estimateReadingMinutesFromBody(post.body)}
-          />
-        ))
-      }
+      <a class="button subtle" href="/apps">アプリ一覧</a>
     </div>
   </section>
 
@@ -157,8 +64,8 @@ const featureAreas = [
     latestRevenueReport && (
       <section>
         <SectionHeader
-          title="最新の収益ログ"
-          description="月次のAdMobとDLの検証メモ（誇大な約束はしません）"
+          title="最新の数字"
+          description="月次の AdMob と、4〜7月の損益"
         />
         <div class="card-grid cols-2">
           <BlogCard
@@ -170,96 +77,64 @@ const featureAreas = [
             href={`/blog/${latestRevenueReport.id}`}
             readingMinutes={estimateReadingMinutesFromBody(latestRevenueReport.body)}
           />
+          {
+            pnlReport && (
+              <BlogCard
+                title={pnlReport.data.title}
+                description={pnlReport.data.description}
+                pubDate={pnlReport.data.pubDate}
+                category={pnlReport.data.category}
+                tags={pnlReport.data.tags}
+                href={`/blog/${pnlReport.id}`}
+                readingMinutes={estimateReadingMinutesFromBody(pnlReport.body)}
+              />
+            )
+          }
         </div>
       </section>
     )
   }
 
   <section>
-    <SectionHeader title="収益化ロードマップ" description="作る、出す、改善する、収益化する" />
-    <div class="card-grid cols-4">
-      <RoadmapStep
-        step="Step 1"
-        title="課題を選んで作る"
-        description="検索される課題を狙って、最小機能のiOSアプリを素早く公開します。"
-      />
-      <RoadmapStep
-        step="Step 2"
-        title="App Storeに出す"
-        description="タイトル、説明文、スクリーンショットを整えて初速を作ります。"
-      />
-      <RoadmapStep
-        step="Step 3"
-        title="ASOで改善する"
-        description="流入とCVRを追いながら、訴求と導線を継続的に改善します。"
-      />
-      <RoadmapStep
-        step="Step 4"
-        title="収益化を積み上げる"
-        description="広告や有料機能を検証し、継続率と収益性を高めます。"
-      />
+    <SectionHeader title="最近の記事" description="新しい順に3本" />
+    <div class="card-grid cols-3">
+      {
+        recentPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            href={`/blog/${post.id}`}
+            readingMinutes={estimateReadingMinutesFromBody(post.body)}
+          />
+        ))
+      }
+    </div>
+    <div class="cta-row">
+      <a class="button subtle" href="/blog">記事一覧</a>
     </div>
   </section>
 
   <section>
-    <SectionHeader title="Featured Apps" description="公開中の個人開発アプリ" />
+    <SectionHeader title="公開中のアプリ" description="いま出している iOS アプリ" />
     <div class="card-grid cols-3">
       {featuredApps.map((app) => <AppCard app={app} />)}
     </div>
-  </section>
-
-  <section>
-    <SectionHeader
-      title="アプリ紹介記事"
-      description="機能・実績・App Store への導線をまとめた紹介記事です"
-    />
-    <div class="card-grid cols-2">
-      {appIntroPosts.map((post) => (
-        <BlogCard
-          title={post.data.title}
-          description={post.data.description}
-          pubDate={post.data.pubDate}
-          category={post.data.category}
-          tags={post.data.tags}
-          href={`/blog/${post.id}`}
-          readingMinutes={estimateReadingMinutesFromBody(post.body)}
-        />
-      ))}
-    </div>
     <div class="cta-row">
-      <a class="button subtle" href="/apps">アプリ一覧と紹介リンク</a>
-      <a class="button subtle" href="/blog">ブログ一覧へ</a>
+      <a class="button subtle" href="/apps">すべて見る</a>
     </div>
   </section>
 
   <section>
-    <SectionHeader title="Categories" description="テーマから記事を探す" />
-    <div class="card">
-      <div class="category-scroll-row" aria-label="カテゴリ一覧">
-        {categories.map((category) => (
-          <CategoryBadge label={category} />
-        ))}
-      </div>
-      <div class="cta-row">
-        <a class="button subtle" href="/blog">記事一覧へ</a>
-        <a class="button subtle" href="/categories">カテゴリ一覧へ</a>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <SectionHeader title="About Summary" description="運営者と発信方針" />
+    <SectionHeader title="運営" description="誰が書いているか" />
     <div class="card">
       <p>
-        こんにちは。本業の合間にアプリを触って、ときどき徹夜して、翌朝は後悔しつつもまた改善したくなる——そんなサイクルを回している会社員エンジニアです。
-      </p>
-      <p>
-        個人開発ラボでは、その泥臭い試行錯誤（ASO、収益化、Cursor/Codex など）をできるだけ正直に残しています。同じ立場の方の参考になればうれしいです。
+        製造業の会社員エンジニアです。本業の合間にアプリを触り、数字は小さくても月次で残しています。
       </p>
       <div class="cta-row">
-        <a class="button subtle" href="/apps">アプリ一覧を見る</a>
-        <a class="button subtle" href="/blog">最新記事を読む</a>
-        <a class="button subtle" href="/about">運営者について</a>
+        <a class="button subtle" href="/about">もう少し詳しく</a>
       </div>
     </div>
   </section>

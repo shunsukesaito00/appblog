@@ -18,7 +18,10 @@ this project, read the matching playbook BEFORE starting the task and follow
 it: `playbooks/debugging.md` for bug investigation, `playbooks/refactoring.md`
 for restructuring existing code, `playbooks/code-review.md` for reviewing
 changes, `playbooks/new-feature.md` for building new functionality,
-`playbooks/revenue-report.md` for revenue report blog posts,
+`playbooks/writing-voice.md` for **any** blog article create/edit (body,
+title, description) — no exceptions,
+`playbooks/revenue-report.md` for revenue report blog posts (in addition to
+writing-voice),
 `playbooks/site-roadmap.md` when proposing the next development step. The same
 applies to any project-specific documents referenced from this file: read
 them regardless of which agent you are.
@@ -432,7 +435,9 @@ After editing, provide only:
 4. Remaining risks
 5. **次の開発提案**（1件。`playbooks/site-roadmap.md` 参照）
 
-**収益報告タスク:** 作業前に `playbooks/revenue-report.md` を読み、記事テンプレ `src/content/blog-templates/revenue-report-seo-template.mdx` に沿って作成する。
+**記事作成・改稿（すべて）:** 作業前に `playbooks/writing-voice.md` を読み、§6 チェックリストを満たしてから完了とする。
+
+**収益報告タスク:** 作業前に `playbooks/writing-voice.md` と `playbooks/revenue-report.md` を読み、記事テンプレ `src/content/blog-templates/revenue-report-seo-template.mdx` に沿って作成する。文体は writing-voice を優先する。
 
 **サイト全体タスク:** 次の開発提案を出す前に `playbooks/site-roadmap.md` を読み、フェーズに沿って1件に絞る。
 

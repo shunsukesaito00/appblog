@@ -30,19 +30,9 @@ const {
 } = Astro.props;
 
 const siteName = "個人開発ラボ";
-const siteSubtitle = "会社員エンジニアによる副業アプリ開発・ASO・収益化の実践ログ";
+const siteSubtitle = "7月AdMob $0.91・4〜7月は約−4.2万円";
 const baseUrl = Astro.site ?? new URL("https://appblog-a4k.pages.dev");
-const normalizedCanonical =
-  canonical === undefined
-    ? undefined
-    : canonical === "/"
-      ? "/"
-      : canonical.endsWith("/")
-        ? canonical
-        : `${canonical}/`;
-const canonicalUrl = normalizedCanonical
-  ? new URL(normalizedCanonical, baseUrl).toString()
-  : Astro.url.toString();
+const canonicalUrl = canonical ? new URL(canonical, baseUrl).toString() : Astro.url.toString();
 const ogUrl = canonicalUrl;
 const ogImageUrl =
   ogImage.startsWith("https://") || ogImage.startsWith("http://")

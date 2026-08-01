@@ -13,6 +13,7 @@ alwaysApply: true
 - Do not claim completion without verification.
 - State uncertainty briefly instead of guessing.
 - **タスク完了時は必ず「次の開発提案」を1件だけ出す**（`playbooks/site-roadmap.md` のフェーズに沿い、なぜ今・やること・完了条件・コピペ用プロンプト1文）。単純な質問のみのやりとりを除く。
+- **ブログ記事の作成・改稿**では、作業前に `playbooks/writing-voice.md` を読み、そのルールで書く（詳細は同ファイルと `.cursor/rules/blog-writing.mdc`）。
 
 For non-trivial tasks, before editing, provide only:
 1. Goal

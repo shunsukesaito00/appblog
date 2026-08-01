@@ -19,7 +19,7 @@ const grouped = [...new Set(posts.map((post) => post.data.category))]
   description="個人開発ラボの記事カテゴリ一覧です。"
   canonical="/categories"
 >
-  <SectionHeader title="Categories" description="カテゴリから記事を探す" />
+  <SectionHeader title="カテゴリ" description="記事のカテゴリごと" />
   <div class="card-grid cols-2">
     {grouped.map((group) => (
       <section class="card">

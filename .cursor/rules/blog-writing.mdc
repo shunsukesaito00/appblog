@@ -1,0 +1,14 @@
+---
+description: Blog writing must follow playbooks/writing-voice.md (no AI-generic prose)
+globs:
+  - src/content/blog/**/*
+  - src/content/blog-templates/**/*
+  - playbooks/revenue-report.md
+  - playbooks/writing-voice.md
+alwaysApply: false
+---
+
+- Before drafting or editing any blog article body, `title`, or `description`, read and follow `playbooks/writing-voice.md` in full.
+- For revenue reports, also follow `playbooks/revenue-report.md`. **Voice rules in writing-voice.md take priority over tone tips elsewhere.**
+- Do not ship copy that fails the checklist in `playbooks/writing-voice.md` §6.
+- Prefer concrete numbers and unfinished questions over generic “実践・改善・収益化” prose.

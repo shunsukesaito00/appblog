@@ -7,7 +7,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // Cloudflare Pages の本番 URL（canonical / sitemap / OGP の基準）
   site: 'https://appblog-a4k.pages.dev',
-  trailingSlash: 'always',
   output: 'static',
   integrations: [mdx(), sitemap()],
 });

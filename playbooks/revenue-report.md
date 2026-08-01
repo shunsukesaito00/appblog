@@ -4,22 +4,24 @@
 
 ## Phase 1: 参照するファイル
 
-1. 本 playbook
-2. 記事テンプレ: `src/content/blog-templates/revenue-report-seo-template.mdx`
-3. 直近のまとめ記事（例: `src/content/blog/revenue-report-2026-06.mdx`）— 文体・構成・コンポーネントの慣例に合わせる
+1. **`playbooks/writing-voice.md`（必須・文体の正本）**
+2. 本 playbook
+3. 記事テンプレ: `src/content/blog-templates/revenue-report-seo-template.mdx`
+4. 直近のまとめ記事（例: `src/content/blog/revenue-report-2026-06.mdx`）— 構成・コンポーネントの慣例に合わせる（禁止フレーズは引き継がない）
 
 ## Phase 2: 記事を書く
 
 - ユーザーが渡した **スクショ・数値のみ** を根拠にする。画面に無い指標（リクエスト・表示・DL など）は **捏造しない**。取れない場合は「—」または未取得と明記する。
 - 出力先: `src/content/blog/revenue-report-YYYY-MM.mdx`（アプリ単体は `revenue-report-YYYY-MM-<slug>.mdx`）
-- SEO: `title` / `description` に年月・主要指標（DL・AdMob 収益）・「個人開発」を含める
-- 文体: 煽らない。人間味のある正直ログ（5月・6月記事のトーンに合わせる）
-- 構成: サマリーカード、表、スクショ、前月比、FAQ、関連記事、免責
+- SEO: `title` / `description` に年月・主要指標（DL・AdMob 収益）・「個人開発」を含める（キーワード羅列にしない。`writing-voice.md` §3）
+- 文体: **`playbooks/writing-voice.md` に従う**（煽らない正直ログ。空のビジネス語・きれいな逆転着地禁止）
+- 構成: サマリーカード、表、スクショ、前月比、FAQ、関連記事、免責（FAQ・カードは埋め草にしない）
 - 内部リンク: 前月まとめ、アプリ紹介記事（`/blog/app-intro-*`）、`/apps`・`/blog`
 - 画像: `public/images/blog/` に配置（例: `admob-all-apps-2026-06.png`, `asc-all-apps-units-2026-06.png`）
 
 ## Phase 3: 検証
 
+- `playbooks/writing-voice.md` §6 チェックリストを通す
 - `npm run build` が通ること
 - 新規記事の URL が `dist/blog/revenue-report-*/` に生成されること
 - `git commit` / `push` は **ユーザーが明示したときのみ**
