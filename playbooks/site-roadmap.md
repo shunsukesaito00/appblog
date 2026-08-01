@@ -33,7 +33,7 @@
 - **ボトルネック:** サイト検索流入なし、AdSense却下、収益報告偏重、**6〜7月はアプリ更新ほぼなしでAdMob低下**（7月 **$0.91**）、DLは給与明細集中
 - **収益（2026-07）:** AdMob合計 **$0.91**・表示 **938**（給与明細 $0.60 / 694）。比較期間 $1.24。DLは未取得。記事: `/blog/revenue-report-2026-07/`
 - **コンテンツ:** 収益報告以外の厚い記事は分析＋How-to4本で **5本**（フェーズ4目安クリア）。ガイド／How-to本番は HTTP 200・sitemap掲載
-- **計測（要約）:** **2026-08-02:** `/guides/salary` と How-to3本は本番 **HTTP 200**・sitemap掲載済み。`site:...`（PDF/手取り差/賞与/guides）は **ヒットなし（未登録寄り）**。**robots.txt 検証済:** 本番・`public/robots.txt` とも `Allow: /`、`Sitemap: .../sitemap-index.xml`、How-to の Disallow / `noindex` なし（sitemap-index / sitemap-0 も 200）。残るのは SC の URL 検査（ユーザー操作）と GA PV（`playbooks/ga4-setup.md`）。社会保険How-toはローカル追加・未本番の可能性あり
+- **計測（要約）:** **2026-08-02:** `/guides/salary`（How-to4本）と社会保険How-toは本番 **HTTP 200**・sitemap掲載済み。`site:...`（PDF/手取り差/賞与/guides）は **ヒットなし（未登録寄り）**。**robots.txt 検証済**。残るのは SC の URL 検査（ユーザー操作）と GA PV（`playbooks/ga4-setup.md`）
 - **ASO（要約）:** サイト側の説明文正本は `apps.ts`（`npm run store:lead`）に残すのみ。**App Store Connect 上の説明文編集・提出は行わない**（運営方針: ストアアプリ側の編集を求めない）。公開反映確認（`store:verify`）も次案に含めない。アプリ成長は **サイト流入・How-to・アプリ本体の小さな更新** 側で進める
 - **導線:** トップ・`/blog`・`/apps`・フッタから `/guides/salary`（How-to4本）、分析・収益・紹介から How-to へリンク済み
 
