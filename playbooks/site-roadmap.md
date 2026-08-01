@@ -34,7 +34,7 @@
 - **収益（2026-07）:** AdMob合計 **$0.91**・表示 **938**（給与明細 $0.60 / 694）。比較期間 $1.24。DLは未取得。記事: `/blog/revenue-report-2026-07/`
 - **コンテンツ:** 収益報告以外の厚い記事は分析＋How-to2本で **3本**（フェーズ4目安クリア）。How-to本番は HTTP 200・sitemap掲載
 - **計測（要約）:** How-toの `site:` は長期間未登録寄り。SC除外理由・GA PVは未取得（`playbooks/ga4-setup.md`）。**次回: `site:`／SC／store:verify を再確認**
-- **ASO（要約）:** 給与明細説明文の正本は `apps.ts`（`npm run store:lead`）。公開反映は要 `npm run store:verify`。**更新再開と合わせて1変更を進める段階**
+- **ASO（要約）:** 給与明細説明文の正本は `apps.ts`（`npm run store:lead`）。**2026-08-01 verify:** 公開ストアは **旧文案のまま**（`reflected: false`）。Connect → 給与明細管理 → 説明（日本語）の**先頭1段落だけ**を `npm run store:lead` の出力（「給与明細のPDF取り込みと手取り記録に対応した…」）に差し替えて提出。反映後に再 verify、成功日を本行に追記
 - **導線:** 分析・5〜7月収益・給与明細単体から How-to2本へリンク済み
 
 ## 提案の出し方（1件のみ）
