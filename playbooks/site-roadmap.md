@@ -35,7 +35,7 @@
 - **コンテンツ:** 収益報告以外の厚い記事は分析＋How-to4本で **5本**（フェーズ4目安クリア）。ガイド／How-to本番は HTTP 200・sitemap掲載
 - **計測（要約）:** **2026-08-02:** `/guides/salary`（How-to4本）と社会保険How-toは本番 **HTTP 200**・sitemap掲載済み。`site:...`（PDF/手取り差/賞与/guides）は **ヒットなし（未登録寄り）**。**robots.txt 検証済**。残るのは SC の URL 検査（ユーザー操作）と GA PV（`playbooks/ga4-setup.md`）
 - **ASO（要約）:** サイト側の説明文正本は `apps.ts`（`npm run store:lead`）に残すのみ。**App Store Connect 上の説明文編集・提出は行わない**（運営方針: ストアアプリ側の編集を求めない）。公開反映確認（`store:verify`）も次案に含めない。アプリ成長は **サイト流入・How-to・アプリ本体の小さな更新** 側で進める
-- **導線:** トップ・`/blog`・`/apps`・フッタから `/guides/salary`（How-to4本）、分析・収益・紹介から How-to へリンク済み
+- **導線:** グローバルナビ・トップ・`/blog`・`/apps`・フッタから `/guides/salary`（How-to4本）、分析・収益・紹介から How-to へリンク済み
 
 ## 提案の出し方（1件のみ）
 
