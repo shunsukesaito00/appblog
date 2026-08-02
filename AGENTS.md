@@ -22,6 +22,8 @@ changes, `playbooks/new-feature.md` for building new functionality,
 title, description) — no exceptions,
 `playbooks/revenue-report.md` for revenue report blog posts (in addition to
 writing-voice),
+`playbooks/weekly-metrics.md` when recording or proposing weekly GA PV /
+App Store DL checks,
 `playbooks/site-roadmap.md` when proposing the next development step. The same
 applies to any project-specific documents referenced from this file: read
 them regardless of which agent you are.
